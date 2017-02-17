@@ -1,31 +1,34 @@
 package com.jiang.foodfaction.adapter;
 
 import android.content.Context;
+import android.content.IntentFilter;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
+import android.widget.GridView;
 import android.widget.TextView;
 
-import com.bumptech.glide.Glide;
-import com.jiang.foodfaction.bean.FoodClassBean;
+import com.jiang.foodfaction.BaseHolder;
 import com.jiang.foodfaction.R;
+import com.jiang.foodfaction.bean.FoodClassBean;
 
 import java.util.List;
 
 /**
- * Created by dllo on 17/2/11.
+ * Created by dllo on 17/2/14.
  */
 
 public class FoodClassAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
-    private List<FoodClassBean> list;
+    //声明一个Bean,这个Bean装有所有想要的元素
+    private FoodClassBean foodClassBean;
     private Context context;
 
-    private ArrayHolder arrayHolder;
+    private String[] titles = {"食物分类", "热门品牌", "连锁餐饮"};
 
-    public void setList(List<FoodClassBean> list) {
-        this.list = list;
+    public void setFoodClassBean(FoodClassBean foodClassBean) {
+        this.foodClassBean = foodClassBean;
+        notifyDataSetChanged();
     }
 
     public FoodClassAdapter(Context context) {
@@ -33,38 +36,92 @@ public class FoodClassAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
         this.context = context;
     }
 
+    public final int ABOVE = 0;
+    public final int CENTER = 1;
+    public final int BLOW = 2;
+
+
+
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        View view= LayoutInflater.from(context).inflate(R.layout.foodclass_item,parent,false);
-
-        arrayHolder=new ArrayHolder(view);
-        return arrayHolder;
+        RecyclerView.ViewHolder holder = null;
+        switch (viewType) {
+            case 0:
+                View aboveHolder = LayoutInflater.from(context).inflate(R.layout.foodclass_above, parent, false);
+                holder = new AboveHolder(aboveHolder);
+                break;
+            case 1:
+                View centerHoler = LayoutInflater.from(context).inflate(R.layout.foodclass_center, parent, false);
+                holder = new CenterHolder(centerHoler);
+                break;
+            case 2:
+                View blowHolder = LayoutInflater.from(context).inflate(R.layout.foodclass_blow, parent, false);
+                holder = new BlowHolder(blowHolder);
+                break;
+        }
+        return holder;
     }
 
     @Override
     public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
+        int type = getItemViewType(position);
+        switch (type) {
+            case 0:
 
-        arrayHolder= (ArrayHolder) holder;
+                break;
+            case 1:
 
-        arrayHolder.textView.setText(list.get(position).getGroup_count());
-        //设置图片
-        Glide.with(context).load(
-                list.get(position).getGroup().get(position).getCategories().get(position).getImage_url());
+                break;
+            case 2:
+
+                ((BlowHolder)holder).textView.setText(titles[position-2]);
+
+                GridViewAdapter adapter = new GridViewAdapter(context);
+                adapter.setGroupBeen(foodClassBean.getGroup().get(position-2));
+                ((BlowHolder)holder).gridView.setAdapter(adapter);
+                break;
+        }
+
+    }
+
+    //返回行布局的数量,当集合为空的时候加载头两个布局,如果不为空,则返回的数量等于集合数加2
+    @Override
+    public int getItemCount() {
+        return foodClassBean == null ? 2 : foodClassBean.getGroup().size() + 2;
     }
 
     @Override
-    public int getItemCount() {
-        return list != null ? list.size() : 0;
+    public int getItemViewType(int position) {
+        if (position == 0) {
+            return ABOVE;
+        } else if (position == 1) {
+            return CENTER;
+        } else {
+            return BLOW;
+        }
     }
 
-    class ArrayHolder extends RecyclerView.ViewHolder {
-        ImageView imageView;
-        TextView textView;
+    class AboveHolder extends RecyclerView.ViewHolder {
+        public AboveHolder(View itemView) {
+            super(itemView);
+        }
+    }
 
-        public ArrayHolder(View itemView) {
-             super(itemView);
-            imageView= (ImageView) itemView.findViewById(R.id.foodclass_item_image);
-            textView= (TextView) itemView.findViewById(R.id.foodclass_item_text);
+    class CenterHolder extends RecyclerView.ViewHolder {
+        public CenterHolder(View itemView) {
+            super(itemView);
+        }
+    }
+
+    class BlowHolder extends RecyclerView.ViewHolder {
+        TextView textView;
+        GridView gridView;
+
+        public BlowHolder(View itemView) {
+            super(itemView);
+            textView = (TextView) itemView.findViewById(R.id.foodclass_text);
+            gridView = (GridView) itemView.findViewById(R.id.foodclass_girdView);
+
         }
     }
 }

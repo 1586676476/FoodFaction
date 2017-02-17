@@ -5,12 +5,15 @@ import android.support.annotation.Nullable;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
+import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
 import com.jiang.foodfaction.R;
 import com.jiang.foodfaction.adapter.ShareAdapter;
+import com.jiang.foodfaction.adapter.ShareHomeAdapter;
+import com.jiang.foodfaction.bean.ShareHomeBean;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -24,6 +27,8 @@ public class ShareFragment extends Fragment {
     private ViewPager viewPager;
     private List<Fragment> data;
     private ShareAdapter shareAdapter;
+
+
 
     @Nullable
     @Override
@@ -49,7 +54,11 @@ public class ShareFragment extends Fragment {
 
         for (int i = 0; i < tabLayout.getTabCount(); i++) {
             tabLayout.getTabAt(i).setText(shareAdapter.getTabtiles(i));
+
+
         }
         return view;
     }
+
+
 }

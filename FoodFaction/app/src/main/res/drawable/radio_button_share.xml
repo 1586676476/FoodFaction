@@ -2,5 +2,5 @@
 <selector xmlns:android="http://schemas.android.com/apk/res/android">
 
    <item android:drawable="@mipmap/homepage" android:state_checked="false"></item>
-   <item android:drawable="@mipmap/homepage_select" android:state_checked="false"></item>
+   <item android:drawable="@mipmap/homepage_select" android:state_checked="true"></item>
 </selector>

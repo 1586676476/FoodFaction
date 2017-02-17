@@ -2,6 +2,7 @@ package com.jiang.foodfaction.packaging;
 
 import android.os.Handler;
 import android.os.Looper;
+import android.util.Log;
 
 import com.google.gson.Gson;
 import com.jiang.foodfaction.inter.CallBack;
@@ -21,6 +22,7 @@ import okhttp3.Response;
  */
 
 public class OkTool implements NetInterface{
+    private static final String TAG = "OkTool";
     //声明对象
     private OkHttpClient okHttpClient;
 
@@ -35,6 +37,7 @@ public class OkTool implements NetInterface{
 
     @Override
     public <T> void startRequest(String url, final Class<T> tClass, final CallBack<T> tCallBack) {
+        Log.e(TAG, "OkTool startRequest: ");
         Request request=new Request.Builder().url(url).build();
         okHttpClient.newCall(request).enqueue(new Callback() {
             //连接失败时回调的方法

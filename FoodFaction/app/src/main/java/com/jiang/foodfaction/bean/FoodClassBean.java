@@ -56,8 +56,7 @@ public class FoodClassBean {
         public void setCategories(List<CategoriesBean> categories) {
             this.categories = categories;
         }
-        FoodClassBean data = new FoodClassBean();
-        String bb = data.getGroup().get(0).getCategories().get(0).getImage_url();
+
         public static class CategoriesBean {
             /**
              * id : 1

@@ -12,21 +12,21 @@
     </item>
     <item
         is-multidex="true"
-        jar="/Users/dllo/Desktop/GitDemo/FoodFaction/FoodFaction/app/build/intermediates/exploded-aar/com.android.support/animated-vector-drawable/25.1.0/jars/classes.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="25.0.2"
-        sha1="6fb6ac3e8d3b9013819920d9ea11f3803c4c0033">
-        <dex dex="/Users/dllo/Desktop/GitDemo/FoodFaction/FoodFaction/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.android.support-animated-vector-drawable-25.1.0_97cd76bcea62914e69785825b8b53e79ab69508b/classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
         jar="/Users/dllo/Desktop/GitDemo/FoodFaction/FoodFaction/app/build/intermediates/incremental-runtime-classes/debug/instant-run.jar"
         jumboMode="true"
         optimize="true"
         revision="25.0.2"
-        sha1="79159f011c10d07c6176ad28cfd3c51cecd3ef1d">
+        sha1="038a214e231ca4a8f9b55c2dfb8e214837524b05">
         <dex dex="/Users/dllo/Desktop/GitDemo/FoodFaction/FoodFaction/app/build/intermediates/transforms/dex/debug/folders/1000/10/instant-run_219fb712ed585ae5a0f758d5e64827665cdbb914/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/dllo/.gradle/caches/modules-2/files-2.1/org.greenrobot/eventbus/3.0.0/ddd99896e9569eaababbe81b35d80e1b91c4ad85/eventbus-3.0.0.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.2"
+        sha1="ddd99896e9569eaababbe81b35d80e1b91c4ad85">
+        <dex dex="/Users/dllo/Desktop/GitDemo/FoodFaction/FoodFaction/app/build/intermediates/transforms/dex/debug/folders/1000/10/eventbus-3.0.0_577cf70ac8ff865bdacff31a3fb4f7a7831e12da/classes.dex" />
     </item>
     <item
         is-multidex="true"
@@ -84,6 +84,60 @@
     </item>
     <item
         is-multidex="true"
+        jar="/Users/dllo/Desktop/GitDemo/FoodFaction/FoodFaction/app/build/intermediates/exploded-aar/com.android.support/support-fragment/25.1.0/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.2"
+        sha1="2a53c4f3518116b8c6aee0e477233f0f7da8616f">
+        <dex dex="/Users/dllo/Desktop/GitDemo/FoodFaction/FoodFaction/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.android.support-support-fragment-25.1.0_dc5fd2455e2094ca51f8e3889e052905bb98102b/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/dllo/Desktop/GitDemo/FoodFaction/FoodFaction/app/build/intermediates/exploded-aar/com.android.support/support-core-ui/25.1.0/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.2"
+        sha1="aee64634871d88a419d59eb743c1258a60f19700">
+        <dex dex="/Users/dllo/Desktop/GitDemo/FoodFaction/FoodFaction/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.android.support-support-core-ui-25.1.0_46ed465ddd77258d5a2df8d28112902e12084a6d/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/dllo/Desktop/GitDemo/FoodFaction/FoodFaction/app/build/intermediates/incremental-classes/debug/instant-run-bootstrap.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.2"
+        sha1="86e94ad1cabc091f6eed12c1d17760a6a9d1b4e7">
+        <dex dex="/Users/dllo/Desktop/GitDemo/FoodFaction/FoodFaction/app/build/intermediates/transforms/dex/debug/folders/1000/10/instant-run-bootstrap_b4b82757c2ed121e9b7355cbb036fc92e709337a/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/dllo/.gradle/caches/modules-2/files-2.1/com.squareup.okio/okio/1.11.0/840897fcd7223a8143f1d9b6f69714e7be34fd50/okio-1.11.0.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.2"
+        sha1="840897fcd7223a8143f1d9b6f69714e7be34fd50">
+        <dex dex="/Users/dllo/Desktop/GitDemo/FoodFaction/FoodFaction/app/build/intermediates/transforms/dex/debug/folders/1000/10/okio-1.11.0_7b0e8edbb6a2cd8ef28d4f3b79744509a8b75349/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/dllo/Desktop/GitDemo/FoodFaction/FoodFaction/app/build/intermediates/exploded-aar/de.hdodenhof/circleimageview/2.1.0/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.2"
+        sha1="a2af9c72ccaa4c5c049b500ca6ea664a4ce1f7d4">
+        <dex dex="/Users/dllo/Desktop/GitDemo/FoodFaction/FoodFaction/app/build/intermediates/transforms/dex/debug/folders/1000/10/de.hdodenhof-circleimageview-2.1.0_5c83a9180ed68a994ea96edab5f5a0861e04e9a4/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/dllo/Desktop/GitDemo/FoodFaction/FoodFaction/app/build/intermediates/exploded-aar/com.android.support/animated-vector-drawable/25.1.0/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.2"
+        sha1="6fb6ac3e8d3b9013819920d9ea11f3803c4c0033">
+        <dex dex="/Users/dllo/Desktop/GitDemo/FoodFaction/FoodFaction/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.android.support-animated-vector-drawable-25.1.0_97cd76bcea62914e69785825b8b53e79ab69508b/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
         jar="/Users/dllo/Desktop/study/Android-SDK-mac/extras/android/m2repository/com/android/support/support-annotations/25.1.0/support-annotations-25.1.0.jar"
         jumboMode="true"
         optimize="true"
@@ -120,48 +174,12 @@
     </item>
     <item
         is-multidex="true"
-        jar="/Users/dllo/Desktop/GitDemo/FoodFaction/FoodFaction/app/build/intermediates/exploded-aar/com.android.support/support-fragment/25.1.0/jars/classes.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="25.0.2"
-        sha1="2a53c4f3518116b8c6aee0e477233f0f7da8616f">
-        <dex dex="/Users/dllo/Desktop/GitDemo/FoodFaction/FoodFaction/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.android.support-support-fragment-25.1.0_dc5fd2455e2094ca51f8e3889e052905bb98102b/classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="/Users/dllo/Desktop/GitDemo/FoodFaction/FoodFaction/app/build/intermediates/exploded-aar/com.android.support/support-core-ui/25.1.0/jars/classes.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="25.0.2"
-        sha1="aee64634871d88a419d59eb743c1258a60f19700">
-        <dex dex="/Users/dllo/Desktop/GitDemo/FoodFaction/FoodFaction/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.android.support-support-core-ui-25.1.0_46ed465ddd77258d5a2df8d28112902e12084a6d/classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
         jar="/Users/dllo/Desktop/GitDemo/FoodFaction/FoodFaction/app/build/intermediates/exploded-aar/com.android.support/support-compat/25.1.0/jars/classes.jar"
         jumboMode="true"
         optimize="true"
         revision="25.0.2"
         sha1="ca3c7aa31e2726a400a6e552b93cb9f63c9a1e6d">
         <dex dex="/Users/dllo/Desktop/GitDemo/FoodFaction/FoodFaction/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.android.support-support-compat-25.1.0_e7c4da3a865c99ab1fd4603b84ef4b0e38ec0412/classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="/Users/dllo/Desktop/GitDemo/FoodFaction/FoodFaction/app/build/intermediates/incremental-classes/debug/instant-run-bootstrap.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="25.0.2"
-        sha1="43568a737089c7ec2ddfae6c90defad054c8341f">
-        <dex dex="/Users/dllo/Desktop/GitDemo/FoodFaction/FoodFaction/app/build/intermediates/transforms/dex/debug/folders/1000/10/instant-run-bootstrap_b4b82757c2ed121e9b7355cbb036fc92e709337a/classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="/Users/dllo/.gradle/caches/modules-2/files-2.1/com.squareup.okio/okio/1.11.0/840897fcd7223a8143f1d9b6f69714e7be34fd50/okio-1.11.0.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="25.0.2"
-        sha1="840897fcd7223a8143f1d9b6f69714e7be34fd50">
-        <dex dex="/Users/dllo/Desktop/GitDemo/FoodFaction/FoodFaction/app/build/intermediates/transforms/dex/debug/folders/1000/10/okio-1.11.0_7b0e8edbb6a2cd8ef28d4f3b79744509a8b75349/classes.dex" />
     </item>
     <item
         is-multidex="true"

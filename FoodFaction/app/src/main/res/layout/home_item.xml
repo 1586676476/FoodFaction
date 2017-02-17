@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="200dp">
+
+    <ImageView
+        android:id="@+id/home_card_image"
+        android:layout_width="match_parent"
+        android:layout_height="140dp"
+        android:src="@mipmap/ic_launcher" />
+
+    <TextView
+        android:id="@+id/home_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/home_card_image"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="10dp"
+        android:text="123"
+        android:textSize="15sp" />
+
+    <de.hdodenhof.circleimageview.CircleImageView
+        android:id="@+id/home_publisher_avatar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/home_title"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="10dp"
+        android:src="@mipmap/ic_launcher" />
+
+    <TextView
+        android:id="@+id/home_publisher"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignTop="@id/home_publisher_avatar"
+        android:layout_below="@id/home_title"
+        android:layout_toRightOf="@id/home_publisher_avatar"
+        android:text="789"
+        android:textSize="13sp" />
+
+    <ImageView
+        android:id="@+id/home_card"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="300dp"
+        android:layout_below="@id/home_title"
+        android:layout_alignTop="@id/home_publisher_avatar"
+        android:src="@mipmap/home_agree" />
+
+    <TextView
+        android:id="@+id/home_like_ct"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="741"
+        android:textSize="13sp"
+        android:layout_alignParentRight="true"
+        android:layout_alignTop="@id/home_publisher_avatar"
+        android:layout_marginRight="10dp"
+         />
+
+
+</RelativeLayout>

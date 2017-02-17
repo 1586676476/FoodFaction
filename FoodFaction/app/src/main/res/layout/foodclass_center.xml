@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+    <RadioGroup
+        android:id="@+id/radiogroup_center"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_margin="10dp"
+        android:orientation="horizontal">
+
+        <RadioButton
+            android:id="@+id/foodclass_analyze"
+            style="@style/radioButton"
+            android:drawableTop="@drawable/radio_button_analyze"
+            android:text="饮食分析" />
+
+        <RadioButton
+            android:id="@+id/foodclass_compare"
+            style="@style/radioButton"
+            android:drawableTop="@drawable/radio_button_compare"
+            android:text="搜索对比" />
+
+        <RadioButton
+            android:id="@+id/foodclass_scan"
+            style="@style/radioButton"
+            android:drawableTop="@drawable/radio_button_scan"
+            android:text="扫码对比" />
+    </RadioGroup>
+
+</RelativeLayout>
