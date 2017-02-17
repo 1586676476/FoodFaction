@@ -34,6 +34,11 @@ public class ShareHomeAdapter extends RecyclerView.Adapter<BaseHolder> {
         this.context = context;
     }
 
+    public void setMore(List<ShareHomeBean.FeedsBean> list){
+        feedsBeen.addAll(list);
+        notifyDataSetChanged();
+    }
+
 
     @Override
     public BaseHolder onCreateViewHolder(ViewGroup parent, int viewType) {
@@ -46,8 +51,8 @@ public class ShareHomeAdapter extends RecyclerView.Adapter<BaseHolder> {
         holder.setText(R.id.home_title,feedsBeen.get(position).getTitle());
         holder.setText(R.id.home_like_ct, String.valueOf(feedsBeen.get(position).getLike_ct()));
 
-        holder.setImage(R.id.home_card_image,"http://food.boohee.com/fb/v1/feeds/category_feed?page=1&category=1&per=10");
-        holder.setImage(R.id.home_publisher_avatar,"http://food.boohee.com/fb/v1/feeds/category_feed?page=1&category=1&per=10");
+        holder.setImage(R.id.home_card_image,feedsBeen.get(position).getCard_image());
+        holder.setImage(R.id.home_publisher_avatar,feedsBeen.get(position).getPublisher_avatar());
     }
 
     @Override

@@ -2,14 +2,18 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    >
 
     <RadioGroup
         android:id="@+id/radiogroup_center"
         android:layout_width="match_parent"
         android:layout_height="50dp"
-        android:layout_margin="10dp"
-        android:orientation="horizontal">
+        android:layout_marginTop="20dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:orientation="horizontal"
+        android:background="@color/text_color_white">
 
         <RadioButton
             android:id="@+id/foodclass_analyze"

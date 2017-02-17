@@ -37,16 +37,12 @@ public class FoodClassFragment extends Fragment {
 
     private FoodClassAdapter foodClassAdapter;
 
-//    private List<FoodClassBean.GroupBean> list;
-//    private GridViewAdapter gridViewAdapter;
-//    private GridView gridView;
-
-    @Nullable
+@Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_foodclass, container, false);
         recyclerView= (RecyclerView) view.findViewById(R.id.foodclass_recyclerView);
-        //gridView = (GridView) view.findViewById(R.id.foodclass_girdView);
+
         return view;
     }
 
@@ -63,18 +59,11 @@ public class FoodClassFragment extends Fragment {
 
         recyclerView.setAdapter(foodClassAdapter);
 
-//
-//        list = new ArrayList<>();
-//        gridViewAdapter = new GridViewAdapter(getContext());
-//
-//        gridViewAdapter.setGroupBeen(list);
-//        gridView.setAdapter(gridViewAdapter);
+
 
         NetTool.getInstance().startRequest(url, FoodClassBean.class, new CallBack<FoodClassBean>() {
             @Override
             public void onSuccess(FoodClassBean respomse) {
-//                list = respomse.getGroup();
-//                gridViewAdapter.setGroupBeen(list);
 
                 data = respomse;
                 Log.e(TAG, "onSuccess: "+data.getGroup().size());

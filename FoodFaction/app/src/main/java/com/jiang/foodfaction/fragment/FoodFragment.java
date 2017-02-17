@@ -1,15 +1,25 @@
 package com.jiang.foodfaction.fragment;
 
+import android.content.BroadcastReceiver;
+import android.content.Context;
+import android.content.Intent;
+import android.content.IntentFilter;
+import android.graphics.Rect;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ListView;
 
 import com.jiang.foodfaction.R;
+import com.jiang.foodfaction.Scorell;
 import com.jiang.foodfaction.adapter.FoodAdapter;
+import com.jiang.foodfaction.bean.EvaluateBean;
 import com.jiang.foodfaction.bean.FoodBean;
 import com.jiang.foodfaction.bean.FoodClassBean;
 import com.jiang.foodfaction.inter.CallBack;
@@ -23,35 +33,47 @@ import java.util.List;
  */
 
 public class FoodFragment extends Fragment {
-    private String url="http://food.boohee.com/fb/v1/feeds/category_feed?page=1&category=4&per=10";
+
+    private static final String TAG = "FoodFragment";
+    private String url = "http://food.boohee.com/fb/v1/feeds/category_feed?page=1&category=4&per=10";
 
     private List<FoodBean.FeedsBean> list;
-    private ListView listView;
+    private RecyclerView recyclerView;
     private FoodAdapter foodAdapter;
+
+    private int pager=1;
+
+    private Receiver receiver;
+
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View view=inflater.inflate(R.layout.fragment_food,container,false);
-        listView= (ListView) view.findViewById(R.id.food_listView);
+        View view = inflater.inflate(R.layout.fragment_food, container, false);
+        recyclerView = (RecyclerView) view.findViewById(R.id.food_recycleView);
         return view;
     }
 
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-
+        Log.e(TAG, "onActivityCreated: ");
         list = new ArrayList<>();
+
+        LinearLayoutManager manager = new LinearLayoutManager(getContext());
+
+        recyclerView.setLayoutManager(manager);
 
         foodAdapter = new FoodAdapter(getContext());
 
         foodAdapter.setFeedsBeen(list);
 
-        listView.setAdapter(foodAdapter);
+
+        recyclerView.setAdapter(foodAdapter);
 
         NetTool.getInstance().startRequest(url, FoodBean.class, new CallBack<FoodBean>() {
             @Override
             public void onSuccess(FoodBean respomse) {
-                list=respomse.getFeeds();
+                list = respomse.getFeeds();
                 foodAdapter.setFeedsBeen(list);
             }
 
@@ -60,6 +82,67 @@ public class FoodFragment extends Fragment {
 
             }
         });
+        //设置行间距
+        SpaceItemDecoration decoration = new SpaceItemDecoration(16);
+        recyclerView.addItemDecoration(decoration);
 
+
+        Scorell scorell = new Scorell(recyclerView, getContext());
+
+        scorell.load();
+
+        receiver = new Receiver();
+
+        IntentFilter intentFilter = new IntentFilter("LOADING");
+
+        getContext().registerReceiver(receiver, intentFilter);
+
+    }
+
+    public class SpaceItemDecoration extends RecyclerView.ItemDecoration {
+        //声明一个距离
+        private int space;
+
+        public SpaceItemDecoration(int space) {
+            this.space = space;
+        }
+
+        @Override
+        public void getItemOffsets(Rect outRect, View view, RecyclerView parent, RecyclerView.State state) {
+            outRect.left = space;
+            outRect.right = space;
+            outRect.bottom = space;
+            if (parent.getChildAdapterPosition(view) == 0) {
+                outRect.top = space;
+            }
+
+        }
+    }
+
+    //广播接收器
+    class Receiver extends BroadcastReceiver {
+
+        @Override
+        public void onReceive(Context context, Intent intent) {
+
+            pager++;
+            final String url1 = "http://food.boohee.com/fb/v1/feeds/category_feed?page=" + pager + "&category=4&per=10";
+
+            NetTool.getInstance().startRequest(url1, FoodBean.class, new CallBack<FoodBean>() {
+
+
+                @Override
+                public void onSuccess(FoodBean respomse) {
+                    list=respomse.getFeeds();
+                    foodAdapter.setMore(list);
+                }
+
+                @Override
+                public void onError(Throwable throwable) {
+
+                }
+            });
+
+        }
     }
 }

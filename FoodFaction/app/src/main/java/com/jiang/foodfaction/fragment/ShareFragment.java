@@ -44,7 +44,7 @@ public class ShareFragment extends Fragment {
         data.add(new KnowledgeFragment());
         data.add(new FoodFragment());
 
-        shareAdapter=new ShareAdapter(getFragmentManager(),getContext());
+        shareAdapter=new ShareAdapter(getChildFragmentManager(),getContext());
 
         shareAdapter.setList(data);
 

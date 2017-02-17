@@ -2,6 +2,7 @@ package com.jiang.foodfaction;
 
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.util.SparseArray;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -10,6 +11,8 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
+
+import java.util.List;
 
 /**
  * Created by dllo on 17/2/14.
@@ -86,9 +89,12 @@ public class BaseHolder extends RecyclerView.ViewHolder {
     public BaseHolder setImage(int id,String url){
         ImageView imageView=getView(id);
         if (url!=null){
+            Log.d("BaseHolder++++", url);
             Glide.with(context).load(url).into(imageView);
         }
         return this;
     }
+
+
 
 }

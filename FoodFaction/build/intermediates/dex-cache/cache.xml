@@ -16,7 +16,7 @@
         jumboMode="true"
         optimize="true"
         revision="25.0.2"
-        sha1="038a214e231ca4a8f9b55c2dfb8e214837524b05">
+        sha1="2314c8a8681f75c7d9d576f159b320b2f8c1a4e3">
         <dex dex="/Users/dllo/Desktop/GitDemo/FoodFaction/FoodFaction/app/build/intermediates/transforms/dex/debug/folders/1000/10/instant-run_219fb712ed585ae5a0f758d5e64827665cdbb914/classes.dex" />
     </item>
     <item
@@ -106,7 +106,7 @@
         jumboMode="true"
         optimize="true"
         revision="25.0.2"
-        sha1="86e94ad1cabc091f6eed12c1d17760a6a9d1b4e7">
+        sha1="e1a5439779150dd99456b26ca8c58e8f956e979f">
         <dex dex="/Users/dllo/Desktop/GitDemo/FoodFaction/FoodFaction/app/build/intermediates/transforms/dex/debug/folders/1000/10/instant-run-bootstrap_b4b82757c2ed121e9b7355cbb036fc92e709337a/classes.dex" />
     </item>
     <item
