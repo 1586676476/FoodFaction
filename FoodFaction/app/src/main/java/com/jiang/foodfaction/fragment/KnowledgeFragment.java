@@ -14,13 +14,16 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import com.jiang.foodfaction.R;
 import com.jiang.foodfaction.Scorell;
+import com.jiang.foodfaction.activity.DetailsActivity;
 import com.jiang.foodfaction.adapter.KnowledgeAdapter;
 import com.jiang.foodfaction.bean.EvaluateBean;
 import com.jiang.foodfaction.bean.KnowledgeBean;
 import com.jiang.foodfaction.inter.CallBack;
+import com.jiang.foodfaction.inter.OnClickListener;
 import com.jiang.foodfaction.packaging.NetTool;
 
 import java.util.ArrayList;
@@ -30,7 +33,7 @@ import java.util.List;
  * Created by dllo on 17/2/11.
  */
 
-public class KnowledgeFragment extends Fragment {
+public class KnowledgeFragment extends Fragment implements OnClickListener {
 
     private String url="http://food.boohee.com/fb/v1/feeds/category_feed?page=1&category=3&per=10";
 
@@ -59,6 +62,8 @@ public class KnowledgeFragment extends Fragment {
         knowledgeAdapter=new KnowledgeAdapter(getContext());
 
         knowledgeAdapter.setFeedsBeen(list);
+
+       knowledgeAdapter.setOnClickListener(this);
 
         LinearLayoutManager manager=new LinearLayoutManager(getContext());
 
@@ -93,6 +98,14 @@ public class KnowledgeFragment extends Fragment {
         SpaceItemDecoration decoration = new SpaceItemDecoration(16);
         recyclerView.addItemDecoration(decoration);
     }
+    //响应点击事件
+    @Override
+    public void onItemClick(int position) {
+        Intent intent = new Intent(getActivity(), DetailsActivity.class);
+        intent.putExtra("url", list.get(position).getLink());
+        startActivity(intent);
+    }
+
     public class SpaceItemDecoration extends RecyclerView.ItemDecoration {
         //声明一个距离
         private int space;
@@ -126,7 +139,7 @@ public class KnowledgeFragment extends Fragment {
 
                 @Override
                 public void onSuccess(KnowledgeBean respomse) {
-                    list=respomse.getFeeds();
+                    list.addAll(respomse.getFeeds());
                     knowledgeAdapter.setMore(list);
                 }
 

@@ -15,6 +15,7 @@ import com.jiang.foodfaction.BaseHolder;
 import com.jiang.foodfaction.R;
 import com.jiang.foodfaction.bean.EvaluateBean;
 import com.jiang.foodfaction.bean.ShareHomeBean;
+import com.jiang.foodfaction.inter.OnClickListener;
 
 import java.util.List;
 
@@ -27,6 +28,12 @@ public class EvaluateAdapter extends RecyclerView.Adapter<BaseHolder> {
     private static final String TAG = "EvaluateAdapter";
     private List<EvaluateBean.FeedsBean> feedsBeen;
     private Context context;
+
+    private OnClickListener onClickListener;
+
+    public void setOnClickListener(OnClickListener onClickListener) {
+        this.onClickListener = onClickListener;
+    }
 
     public void setFeedsBeen(List<EvaluateBean.FeedsBean> feedsBeen) {
         this.feedsBeen = feedsBeen;
@@ -48,12 +55,19 @@ public class EvaluateAdapter extends RecyclerView.Adapter<BaseHolder> {
     }
 
     @Override
-    public void onBindViewHolder(BaseHolder holder, int position) {
+    public void onBindViewHolder(BaseHolder holder, final int position) {
         holder.setText(R.id.evaluate_item_above, feedsBeen.get(position).getSource());
         holder.setText(R.id.evaluate_item_center, feedsBeen.get(position).getTitle());
         holder.setText(R.id.evaluate_item_blow,feedsBeen.get(position).getTail());
 
         holder.setImage(R.id.evaluate_item_image,feedsBeen.get(position).getBackground());
+
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                onClickListener.onItemClick(position);
+            }
+        });
     }
 
     @Override

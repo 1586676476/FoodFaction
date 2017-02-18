@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <include android:id="@+id/homeDetails_item"
+        layout="@layout/merge"/>
+
+    <de.hdodenhof.circleimageview.CircleImageView
+        android:id="@+id/homeDetails_avatar"
+        android:layout_below="@id/homeDetails_item"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@mipmap/ic_launcher"
+        android:layout_marginTop="5dp"
+        android:layout_marginLeft="5dp"
+        />
+
+    <TextView
+        android:id="@+id/homeDetails_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignTop="@id/homeDetails_avatar"
+        android:layout_toRightOf="@id/homeDetails_avatar"
+        android:text="123"
+        android:textSize="15sp"/>
+
+     <ImageView
+        android:id="@+id/homeDetails_agree"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@mipmap/home_agree"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true" />
+
+    <TextView
+        android:id="@+id/homeDetails_number"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_toRightOf="@id/homeDetails_agree"/>
+
+    <ImageView
+        android:id="@+id/homeDetails_url"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:src="@mipmap/ic_launcher"
+        android:layout_above="@id/homeDetails_agree"/>
+
+
+</RelativeLayout>

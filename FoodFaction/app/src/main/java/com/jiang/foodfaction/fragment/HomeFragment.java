@@ -15,12 +15,16 @@ import android.support.v7.widget.StaggeredGridLayoutManager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import com.jiang.foodfaction.R;
 import com.jiang.foodfaction.Scorell;
+import com.jiang.foodfaction.activity.DetailsActivity;
+import com.jiang.foodfaction.activity.HomeDetailsActivity;
 import com.jiang.foodfaction.adapter.ShareHomeAdapter;
 import com.jiang.foodfaction.bean.ShareHomeBean;
 import com.jiang.foodfaction.inter.CallBack;
+import com.jiang.foodfaction.inter.OnClickListener;
 import com.jiang.foodfaction.packaging.NetTool;
 
 import java.util.ArrayList;
@@ -30,7 +34,7 @@ import java.util.List;
  * Created by dllo on 17/2/11.
  */
 
-public class HomeFragment extends Fragment {
+public class HomeFragment extends Fragment implements OnClickListener{
     private List<ShareHomeBean.FeedsBean> list;
     private RecyclerView recyclerView;
     private ShareHomeAdapter shareHomeAdapter;
@@ -68,6 +72,8 @@ public class HomeFragment extends Fragment {
 
         shareHomeAdapter.setFeedsBeen(list);
 
+        shareHomeAdapter.setOnClickListener(this);
+
         recyclerView.setAdapter(shareHomeAdapter);
         return view;
     }
@@ -92,6 +98,14 @@ public class HomeFragment extends Fragment {
 
 
     }
+
+    @Override
+    public void onItemClick(int position) {
+        Intent intent = new Intent(getActivity(), HomeDetailsActivity.class);
+        intent.putExtra("homeUrl", list.get(position).getItem_id()+"");
+        startActivity(intent);
+    }
+
     public class SpaceItemDecoration extends RecyclerView.ItemDecoration {
         //声明一个距离
         private int space;
@@ -122,7 +136,8 @@ public class HomeFragment extends Fragment {
             NetTool.getInstance().startRequest(url1, ShareHomeBean.class, new CallBack<ShareHomeBean>() {
                 @Override
                 public void onSuccess(ShareHomeBean respomse) {
-                    list = respomse.getFeeds();
+                    //将所有的请求数据都加入到集合当中,否则只有10条一页数据
+                    list.addAll(respomse.getFeeds());
                     shareHomeAdapter.setMore(list);
                 }
 

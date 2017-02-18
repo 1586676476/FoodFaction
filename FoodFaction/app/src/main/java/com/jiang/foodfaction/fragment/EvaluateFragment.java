@@ -17,13 +17,16 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import com.jiang.foodfaction.R;
 import com.jiang.foodfaction.Scorell;
+import com.jiang.foodfaction.activity.DetailsActivity;
 import com.jiang.foodfaction.adapter.EvaluateAdapter;
 import com.jiang.foodfaction.bean.EvaluateBean;
 import com.jiang.foodfaction.bean.ShareHomeBean;
 import com.jiang.foodfaction.inter.CallBack;
+import com.jiang.foodfaction.inter.OnClickListener;
 import com.jiang.foodfaction.packaging.NetTool;
 
 import java.util.ArrayList;
@@ -33,7 +36,7 @@ import java.util.List;
  * Created by dllo on 17/2/11.
  */
 
-public class EvaluateFragment extends Fragment implements SwipeRefreshLayout.OnRefreshListener {
+public class EvaluateFragment extends Fragment implements SwipeRefreshLayout.OnRefreshListener,OnClickListener {
 
     private String url = "http://food.boohee.com/fb/v1/feeds/category_feed?page=1&category=2&per=10";
 
@@ -87,6 +90,8 @@ public class EvaluateFragment extends Fragment implements SwipeRefreshLayout.OnR
 
         evaluateAdapter.setFeedsBeen(list);
 
+        evaluateAdapter.setOnClickListener(this);
+
         LinearLayoutManager manager = new LinearLayoutManager(getContext());
 
         recyclerView.setLayoutManager(manager);
@@ -126,6 +131,13 @@ public class EvaluateFragment extends Fragment implements SwipeRefreshLayout.OnR
         handler.sendEmptyMessageDelayed(DISTANCE, 2000);
     }
 
+    @Override
+    public void onItemClick(int position) {
+        Intent intent = new Intent(getActivity(), DetailsActivity.class);
+        intent.putExtra("url", list.get(position).getLink());
+        startActivity(intent);
+    }
+
 
     public class SpaceItemDecoration extends RecyclerView.ItemDecoration {
         //声明一个距离
@@ -159,7 +171,7 @@ public class EvaluateFragment extends Fragment implements SwipeRefreshLayout.OnR
            NetTool.getInstance().startRequest(url1, EvaluateBean.class, new CallBack<EvaluateBean>() {
                @Override
                public void onSuccess(EvaluateBean respomse) {
-                   list=respomse.getFeeds();
+                   list.addAll(respomse.getFeeds());
                    evaluateAdapter.setMore(list);
                }
 

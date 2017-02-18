@@ -20,8 +20,10 @@
         <activity android:name=".activity.MainActivity" />
         <activity android:name=".activity.MyCameraActivity" />
         <activity android:name=".activity.CollectActivity" />
-        <activity android:name=".activity.UpLoadingActivity"/>
-        <activity android:name=".activity.RegisterActivity"/>
+        <activity android:name=".activity.UpLoadingActivity" />
+        <activity android:name=".activity.RegisterActivity" />
+        <activity android:name=".activity.DetailsActivity" />
+        <activity android:name=".activity.HomeDetailsActivity"></activity>
     </application>
 
 </manifest>
