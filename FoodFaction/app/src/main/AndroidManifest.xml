@@ -23,6 +23,7 @@
         <activity android:name=".activity.UpLoadingActivity" />
         <activity android:name=".activity.RegisterActivity" />
         <activity android:name=".activity.DetailsActivity" />
+        <activity android:name=".activity.GrideViewDetails"/>
         <activity android:name=".activity.HomeDetailsActivity"></activity>
     </application>
 

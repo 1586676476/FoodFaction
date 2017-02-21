@@ -1,17 +1,22 @@
 package com.jiang.foodfaction.adapter;
 
 import android.content.Context;
+import android.content.Intent;
 import android.content.IntentFilter;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.GridView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.jiang.foodfaction.BaseHolder;
 import com.jiang.foodfaction.R;
+import com.jiang.foodfaction.activity.GrideViewDetails;
 import com.jiang.foodfaction.bean.FoodClassBean;
+import com.jiang.foodfaction.inter.OnClickListener;
 
 import java.util.List;
 
@@ -23,6 +28,8 @@ public class FoodClassAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
     //声明一个Bean,这个Bean装有所有想要的元素
     private FoodClassBean foodClassBean;
     private Context context;
+
+    private OnClickListener onClickListener;
 
     private String[] titles = {"食物分类", "热门品牌", "连锁餐饮"};
 
@@ -39,7 +46,6 @@ public class FoodClassAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
     public final int ABOVE = 0;
     public final int CENTER = 1;
     public final int BLOW = 2;
-
 
 
     @Override
@@ -63,7 +69,7 @@ public class FoodClassAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
     }
 
     @Override
-    public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
+    public void onBindViewHolder(final RecyclerView.ViewHolder holder, final int position) {
         int type = getItemViewType(position);
         switch (type) {
             case 0:
@@ -74,11 +80,24 @@ public class FoodClassAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
                 break;
             case 2:
 
-                ((BlowHolder)holder).textView.setText(titles[position-2]);
 
-                GridViewAdapter adapter = new GridViewAdapter(context);
-                adapter.setGroupBeen(foodClassBean.getGroup().get(position-2));
-                ((BlowHolder)holder).gridView.setAdapter(adapter);
+                ((BlowHolder) holder).textView.setText(titles[position - 2]);
+
+                final GridViewAdapter adapter = new GridViewAdapter(context);
+                adapter.setGroupBeen(foodClassBean.getGroup().get(position - 2));
+                ((BlowHolder) holder).gridView.setAdapter(adapter);
+                ((BlowHolder) holder).gridView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                    @Override
+                    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                        Intent intent = new Intent(context, GrideViewDetails.class);
+                        intent.putExtra("kind",foodClassBean.getGroup().get(0).getKind());
+                        //注 要将int类型转化成为String类型
+                        intent.putExtra("id",foodClassBean.getGroup().get(0).getCategories().get(position).getId()+"");
+                        context.startActivity(intent);
+                        adapter.notifyDataSetChanged();
+                    }
+                });
+
                 break;
         }
 

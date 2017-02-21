@@ -120,21 +120,21 @@
     </item>
     <item
         is-multidex="false"
-        jar="/Users/dllo/.gradle/caches/modules-2/files-2.1/com.github.bumptech.glide/glide/3.7.0/9e9eeaf9948ee4d6c3ab354e8dc14368f16994a4/glide-3.7.0.jar"
-        jumboMode="false"
-        optimize="true"
-        revision="25.0.2"
-        sha1="9e9eeaf9948ee4d6c3ab354e8dc14368f16994a4">
-        <dex dex="/Users/dllo/Desktop/GitDemo/FoodFaction/FoodFaction/app/build/intermediates/pre-dexed/debug/glide-3.7.0_2a676ecda64c6a497c3d9e11e2f02166b291718b.jar" />
-    </item>
-    <item
-        is-multidex="false"
         jar="/Users/dllo/Desktop/GitDemo/FoodFaction/FoodFaction/app/build/intermediates/exploded-aar/com.android.support/animated-vector-drawable/25.1.0/jars/classes.jar"
         jumboMode="false"
         optimize="true"
         revision="25.0.2"
         sha1="6fb6ac3e8d3b9013819920d9ea11f3803c4c0033">
         <dex dex="/Users/dllo/Desktop/GitDemo/FoodFaction/FoodFaction/app/build/intermediates/pre-dexed/debug/com.android.support-animated-vector-drawable-25.1.0_97cd76bcea62914e69785825b8b53e79ab69508b.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/dllo/.gradle/caches/modules-2/files-2.1/com.github.bumptech.glide/glide/3.7.0/9e9eeaf9948ee4d6c3ab354e8dc14368f16994a4/glide-3.7.0.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.2"
+        sha1="9e9eeaf9948ee4d6c3ab354e8dc14368f16994a4">
+        <dex dex="/Users/dllo/Desktop/GitDemo/FoodFaction/FoodFaction/app/build/intermediates/pre-dexed/debug/glide-3.7.0_2a676ecda64c6a497c3d9e11e2f02166b291718b.jar" />
     </item>
     <item
         is-multidex="true"
@@ -169,7 +169,7 @@
         jumboMode="true"
         optimize="true"
         revision="25.0.2"
-        sha1="afb7852145956077baee660b0d7aa68c4ffff968">
+        sha1="63e5ca80b738a28b0f1ac1b37ad48e1e862c91c1">
         <dex dex="/Users/dllo/Desktop/GitDemo/FoodFaction/FoodFaction/app/build/intermediates/transforms/dex/debug/folders/1000/10/instant-run-bootstrap_b4b82757c2ed121e9b7355cbb036fc92e709337a/classes.dex" />
     </item>
     <item

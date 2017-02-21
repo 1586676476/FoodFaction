@@ -47,9 +47,9 @@ public class HomeDetailsActivity extends BaseActivity {
     public void initData() {
 
         Intent intent = getIntent();
+
         intent.getStringExtra("homeUrl");
-//        String homeUrl="http://food.boohee.com/fb/v1/food_cards/7810?token=&user_key=&" +
-//                "app_version=2.6&app_device=Android&os_version=5.1&phone_model=M578CA&channel=meizu HTTP/1.1";
+
         String homeUrl = "http://food.boohee.com/fb/v1/food_cards/" + intent.getStringExtra("homeUrl") +
                 "?token=&user_key=&app_version=2.6&app_device=Android&os_version=5.1&phone_model=M578CA&channel=meizu";
 
@@ -61,6 +61,7 @@ public class HomeDetailsActivity extends BaseActivity {
                 Glide.with(HomeDetailsActivity.this).load(data.getUser_avatar()).into(avatar);
                 Glide.with(HomeDetailsActivity.this).load(data.getImage_url()).into(imageView);
                 name.setText(data.getTitle());
+                //转化为String类型
                 number.setText(data.getLike_ct()+"");
             }
 
@@ -70,7 +71,7 @@ public class HomeDetailsActivity extends BaseActivity {
             }
         });
 
-    }
+     }
 
     @Override
     public void bindEvent() {

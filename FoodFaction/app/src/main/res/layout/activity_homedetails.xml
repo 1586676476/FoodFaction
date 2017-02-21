@@ -23,7 +23,7 @@
         android:layout_alignTop="@id/homeDetails_avatar"
         android:layout_toRightOf="@id/homeDetails_avatar"
         android:text="123"
-        android:textSize="15sp"/>
+        android:textSize="20sp"/>
 
      <ImageView
         android:id="@+id/homeDetails_agree"
@@ -45,7 +45,9 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:src="@mipmap/ic_launcher"
-        android:layout_above="@id/homeDetails_agree"/>
+        android:layout_below="@+id/homeDetails_avatar"
+        android:layout_alignLeft="@+id/homeDetails_avatar"
+        android:layout_alignStart="@+id/homeDetails_avatar" />
 
 
 </RelativeLayout>

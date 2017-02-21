@@ -22,6 +22,8 @@
         android:layout_centerHorizontal="true"
         android:layout_marginTop="10dp" />
 
+
+
     <com.jiang.foodfaction.MyGridView
         android:id="@+id/foodclass_girdView"
         android:layout_width="wrap_content"

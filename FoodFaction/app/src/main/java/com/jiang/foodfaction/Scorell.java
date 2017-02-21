@@ -6,6 +6,7 @@ import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.StaggeredGridLayoutManager;
+import android.util.Log;
 
 import com.jiang.foodfaction.bean.ShareHomeBean;
 import com.jiang.foodfaction.inter.CallBack;
@@ -16,6 +17,7 @@ import com.jiang.foodfaction.packaging.NetTool;
  */
 
 public class Scorell {
+    private static final String TAG = "Scorell";
     private RecyclerView recyclerView;
     private Context context;
 
@@ -49,6 +51,7 @@ public class Scorell {
                     //如果相等则说明已经滑动到最后了
                     //发送一条广播通知更新数据
                     if (lastPosition == recyclerView.getLayoutManager().getItemCount() - 1) {
+                        Log.e(TAG, "onScrollStateChanged: ");
                         Intent intent = new Intent("LOADING");
                         context.sendBroadcast(intent);
 
