@@ -44,6 +44,7 @@ public class DetailsActivity extends BaseActivity {
         final String url = intent.getStringExtra("url");
 
         webView.loadUrl(url);
+        //希望当前加载的内容再webview中显示
         webView.setWebViewClient(new WebViewClient() {
             @Override
             public boolean shouldOverrideUrlLoading(WebView view, WebResourceRequest request) {

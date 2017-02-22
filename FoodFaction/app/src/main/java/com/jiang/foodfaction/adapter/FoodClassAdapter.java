@@ -90,12 +90,16 @@ public class FoodClassAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
                     @Override
                     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                         Intent intent = new Intent(context, GrideViewDetails.class);
-                        intent.putExtra("kind",foodClassBean.getGroup().get(0).getKind());
-                        //注 要将int类型转化成为String类型
-                        intent.putExtra("id",foodClassBean.getGroup().get(0).getCategories().get(position).getId()+"");
+                        //注 传过去的kind为string类型
+                        intent.putExtra("kind",foodClassBean.getGroup().get(0).getKind().toString());
+
+                        intent.putExtra("id",foodClassBean.getGroup().get(0).getCategories().get(position).getId());
+
+                        intent.putExtra("pop",foodClassBean.getGroup().get(0).getCategories().get(position));
                         context.startActivity(intent);
                         adapter.notifyDataSetChanged();
                     }
+
                 });
 
                 break;
