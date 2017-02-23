@@ -21,9 +21,18 @@ import java.util.List;
  */
 
 public class GridViewAdapter extends BaseAdapter {
+    //声明一个type用来区别gridView中的三种布局
+    private int type;
     private static final String TAG = "GridViewAdapter";
     private FoodClassBean.GroupBean groupBeen;
     private Context context;
+
+    public void setType(int type) {
+        this.type = type;
+    }
+    public int getType(){
+        return type;
+    }
 
     public void setGroupBeen(FoodClassBean.GroupBean groupBeen) {
         this.groupBeen = groupBeen;
@@ -68,10 +77,6 @@ public class GridViewAdapter extends BaseAdapter {
         //加载图片
         Glide.with(context).load(groupBeen.getCategories().get(position).getImage_url()).into(holder.imageView);
 
-
-//        holder.textView.setText(categoriesBeen.get(position).getName());
-//        //从网上拉取图片
-//        Glide.with(context).load(categoriesBeen.get(position).getImage_url()).into(holder.imageView);
         return convertView;
     }
 

@@ -215,6 +215,10 @@ public class FoodClassBean implements Parcelable {
                 dest.writeTypedList(sub_categories);
             }
 
+            public void addAll(CategoriesBean categoriesBeen) {
+
+            }
+
             public static class SubCategoriesBean implements Parcelable{
                 /**
                  * id : 13

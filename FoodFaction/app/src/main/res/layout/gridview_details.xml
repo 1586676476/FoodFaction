@@ -9,7 +9,7 @@
         layout="@layout/merge" />
 
     <LinearLayout
-        android:id="@+id/nutrient"
+        android:id="@+id/linearLayout_nutrient"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@id/grideview_details_include">
@@ -30,7 +30,7 @@
         android:id="@+id/grideview_details_recyclerView"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_below="@id/nutrient"
+        android:layout_below="@id/linearLayout_nutrient"
         android:layout_marginTop="10dp"
         />
 

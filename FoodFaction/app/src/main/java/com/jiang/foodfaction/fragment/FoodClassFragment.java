@@ -18,6 +18,7 @@ import com.jiang.foodfaction.adapter.FoodClassAdapter;
 import com.jiang.foodfaction.adapter.GridViewAdapter;
 import com.jiang.foodfaction.bean.FoodClassBean;
 import com.jiang.foodfaction.inter.CallBack;
+import com.jiang.foodfaction.inter.OnClickListener;
 import com.jiang.foodfaction.packaging.NetTool;
 
 import java.util.ArrayList;
@@ -27,7 +28,7 @@ import java.util.List;
  * Created by dllo on 17/2/11.
  */
 
-public class FoodClassFragment extends Fragment {
+public class FoodClassFragment extends Fragment implements OnClickListener {
 
     private static final String TAG = "FoodClassFragment";
     private String url = "http://food.boohee.com/fb/v1/categories/list";
@@ -61,12 +62,12 @@ public class FoodClassFragment extends Fragment {
 
 
 
+
         NetTool.getInstance().startRequest(url, FoodClassBean.class, new CallBack<FoodClassBean>() {
             @Override
             public void onSuccess(FoodClassBean respomse) {
 
                 data = respomse;
-                Log.e(TAG, "onSuccess: "+data.getGroup().size());
 
                 foodClassAdapter.setFoodClassBean(data);
                 foodClassAdapter.notifyDataSetChanged();
@@ -80,4 +81,8 @@ public class FoodClassFragment extends Fragment {
         });
     }
 
+    @Override
+    public void onItemClick(int position) {
+
+    }
 }

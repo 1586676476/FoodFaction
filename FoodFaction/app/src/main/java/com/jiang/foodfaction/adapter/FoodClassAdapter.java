@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -25,11 +26,16 @@ import java.util.List;
  */
 
 public class FoodClassAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
+    private static final String TAG = "FoodClassAdapter";
     //声明一个Bean,这个Bean装有所有想要的元素
     private FoodClassBean foodClassBean;
     private Context context;
 
     private OnClickListener onClickListener;
+
+    public void setOnClickListener(OnClickListener onClickListener) {
+        this.onClickListener = onClickListener;
+    }
 
     private String[] titles = {"食物分类", "热门品牌", "连锁餐饮"};
 
@@ -85,17 +91,20 @@ public class FoodClassAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
 
                 final GridViewAdapter adapter = new GridViewAdapter(context);
                 adapter.setGroupBeen(foodClassBean.getGroup().get(position - 2));
+                //从网上拉取数据的数量是当前总数—2
+                adapter.setType(position - 2);
                 ((BlowHolder) holder).gridView.setAdapter(adapter);
+                //设置点击事件
                 ((BlowHolder) holder).gridView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                     @Override
                     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                         Intent intent = new Intent(context, GrideViewDetails.class);
-                        //注 传过去的kind为string类型
-                        intent.putExtra("kind",foodClassBean.getGroup().get(0).getKind().toString());
+                        //判断我们传值是哪个类型中的kind,id,pop
+                        intent.putExtra("kind", foodClassBean.getGroup().get(adapter.getType()).getKind());
 
-                        intent.putExtra("id",foodClassBean.getGroup().get(0).getCategories().get(position).getId());
-
-                        intent.putExtra("pop",foodClassBean.getGroup().get(0).getCategories().get(position));
+                        intent.putExtra("id", foodClassBean.getGroup().get(adapter.getType()).getCategories().get(position).getId());
+//
+                        intent.putExtra("pop", foodClassBean.getGroup().get(adapter.getType()).getCategories().get(position));
                         context.startActivity(intent);
                         adapter.notifyDataSetChanged();
                     }

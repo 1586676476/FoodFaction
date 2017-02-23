@@ -37,7 +37,6 @@ public class OkTool implements NetInterface{
 
     @Override
     public <T> void startRequest(String url, final Class<T> tClass, final CallBack<T> tCallBack) {
-        Log.e(TAG, "OkTool startRequest: ");
         Request request=new Request.Builder().url(url).build();
         okHttpClient.newCall(request).enqueue(new Callback() {
             //连接失败时回调的方法

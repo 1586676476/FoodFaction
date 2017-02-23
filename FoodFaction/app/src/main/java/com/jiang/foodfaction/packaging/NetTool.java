@@ -35,6 +35,5 @@ public class NetTool implements NetInterface{
     @Override
     public <T> void startRequest(String url, Class<T> tClass, CallBack<T> tCallBack) {
         netInterface.startRequest(url,tClass,tCallBack);
-        Log.e(TAG, "startRequest: ");
     }
 }
