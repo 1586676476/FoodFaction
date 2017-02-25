@@ -1,5 +1,6 @@
 package com.jiang.foodfaction.fragment;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
@@ -12,8 +13,13 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.GridView;
+import android.widget.LinearLayout;
+import android.widget.RadioButton;
+import android.widget.Toast;
 
 import com.jiang.foodfaction.R;
+import com.jiang.foodfaction.activity.AnalyzeActivity;
+import com.jiang.foodfaction.activity.FoodClassAboveDetailsActivity;
 import com.jiang.foodfaction.adapter.FoodClassAdapter;
 import com.jiang.foodfaction.adapter.GridViewAdapter;
 import com.jiang.foodfaction.bean.FoodClassBean;
@@ -38,14 +44,19 @@ public class FoodClassFragment extends Fragment implements OnClickListener {
 
     private FoodClassAdapter foodClassAdapter;
 
-@Nullable
+
+    @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_foodclass, container, false);
-        recyclerView= (RecyclerView) view.findViewById(R.id.foodclass_recyclerView);
+        recyclerView = (RecyclerView) view.findViewById(R.id.foodclass_recyclerView);
+        //找到对应布局的对应id
+        // linearLayout = (LinearLayout) inflater.inflate(R.layout.foodclass_above, null).findViewById(R.id.foodclass_queue);
+
 
         return view;
     }
+
 
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
@@ -54,13 +65,12 @@ public class FoodClassFragment extends Fragment implements OnClickListener {
 
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
 
-        foodClassAdapter=new FoodClassAdapter(getContext());
+        foodClassAdapter = new FoodClassAdapter(getContext());
 
         foodClassAdapter.setFoodClassBean(data);
+        foodClassAdapter.setOnClickListener(this);
 
         recyclerView.setAdapter(foodClassAdapter);
-
-
 
 
         NetTool.getInstance().startRequest(url, FoodClassBean.class, new CallBack<FoodClassBean>() {
@@ -76,13 +86,16 @@ public class FoodClassFragment extends Fragment implements OnClickListener {
 
             @Override
             public void onError(Throwable throwable) {
-                Log.e(TAG, "onError: ");
+
             }
         });
+
     }
 
     @Override
     public void onItemClick(int position) {
 
     }
+
+
 }

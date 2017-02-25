@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <include android:id="@+id/foodclass_center_compare"
+        layout="@layout/merge"/>
+
+    <LinearLayout
+        android:id="@+id/foodclass_center_compare_linearLayout"
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        android:layout_below="@id/foodclass_center_compare"
+        android:orientation="horizontal"
+        android:background="#EEEEEE">
+
+        <ImageView
+            android:id="@+id/foodclass_center_left_image"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:src="@mipmap/button_add_disable"
+            android:layout_marginLeft="80dp"
+            android:layout_marginTop="20dp"/>
+
+        <ImageView
+            android:id="@+id/foodclass_center_image"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:layout_marginLeft="20dp"
+            android:layout_gravity="center"
+            android:src="@mipmap/library_vs"/>
+
+        <ImageView
+            android:id="@+id/foodclass_center_right_image"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="20dp"
+            android:src="@mipmap/button_add_disable"/>
+
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/foodclass_center_blow_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="营养元素"
+        android:layout_below="@id/foodclass_center_compare_linearLayout"
+        android:layout_centerHorizontal="true"/>
+
+</RelativeLayout>

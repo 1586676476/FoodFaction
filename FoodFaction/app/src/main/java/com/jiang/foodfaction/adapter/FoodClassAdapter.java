@@ -4,17 +4,23 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.RecyclerView.ViewHolder;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.GridView;
+import android.widget.LinearLayout;
+import android.widget.RadioButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.jiang.foodfaction.BaseHolder;
 import com.jiang.foodfaction.R;
+import com.jiang.foodfaction.activity.AnalyzeActivity;
+import com.jiang.foodfaction.activity.FoodClassAboveDetailsActivity;
+import com.jiang.foodfaction.activity.FoodClassCenterCompareActivity;
 import com.jiang.foodfaction.activity.GrideViewDetails;
 import com.jiang.foodfaction.bean.FoodClassBean;
 import com.jiang.foodfaction.inter.OnClickListener;
@@ -25,7 +31,7 @@ import java.util.List;
  * Created by dllo on 17/2/14.
  */
 
-public class FoodClassAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
+public class FoodClassAdapter extends RecyclerView.Adapter<ViewHolder> {
     private static final String TAG = "FoodClassAdapter";
     //声明一个Bean,这个Bean装有所有想要的元素
     private FoodClassBean foodClassBean;
@@ -55,8 +61,8 @@ public class FoodClassAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
 
 
     @Override
-    public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        RecyclerView.ViewHolder holder = null;
+    public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+        ViewHolder holder = null;
         switch (viewType) {
             case 0:
                 View aboveHolder = LayoutInflater.from(context).inflate(R.layout.foodclass_above, parent, false);
@@ -75,17 +81,45 @@ public class FoodClassAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
     }
 
     @Override
-    public void onBindViewHolder(final RecyclerView.ViewHolder holder, final int position) {
+    public void onBindViewHolder(final ViewHolder holder, final int position) {
         int type = getItemViewType(position);
         switch (type) {
             case 0:
-
+                AboveHolder aboveHolder= (AboveHolder) holder;
+                ((AboveHolder) holder).linearLayout.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        Intent intent = new Intent(context, FoodClassAboveDetailsActivity.class);
+                        context.startActivity(intent);
+                    }
+                });
                 break;
             case 1:
+                CenterHolder centerHolder= (CenterHolder) holder;
+                centerHolder.analyze.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        Intent intent=new Intent(context, AnalyzeActivity.class);
+                        context.startActivity(intent);
+                    }
+                });
+                centerHolder.compare.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        Intent intent=new Intent(context, FoodClassCenterCompareActivity.class);
+                        context.startActivity(intent);
+                    }
+                });
+                centerHolder.scan.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+
+                    }
+                });
+
 
                 break;
             case 2:
-
 
                 ((BlowHolder) holder).textView.setText(titles[position - 2]);
 
@@ -134,14 +168,20 @@ public class FoodClassAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
     }
 
     class AboveHolder extends RecyclerView.ViewHolder {
+        LinearLayout linearLayout;
         public AboveHolder(View itemView) {
             super(itemView);
+            linearLayout= (LinearLayout) itemView.findViewById(R.id.foodclass_queue);
         }
     }
 
     class CenterHolder extends RecyclerView.ViewHolder {
+        private RadioButton analyze,compare,scan;
         public CenterHolder(View itemView) {
             super(itemView);
+            analyze= (RadioButton) itemView.findViewById(R.id.foodclass_analyze);
+            compare= (RadioButton) itemView.findViewById(R.id.foodclass_compare);
+            scan= (RadioButton) itemView.findViewById(R.id.foodclass_scan);
         }
     }
 
@@ -156,4 +196,5 @@ public class FoodClassAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
 
         }
     }
+
 }

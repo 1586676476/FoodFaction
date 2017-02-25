@@ -23,8 +23,11 @@
         <activity android:name=".activity.UpLoadingActivity" />
         <activity android:name=".activity.RegisterActivity" />
         <activity android:name=".activity.DetailsActivity" />
-        <activity android:name=".activity.GrideViewDetails"/>
-        <activity android:name=".activity.HomeDetailsActivity"></activity>
+        <activity android:name=".activity.GrideViewDetails" />
+        <activity android:name=".activity.HomeDetailsActivity" />
+        <activity android:name=".activity.FoodClassAboveDetailsActivity" />
+        <activity android:name=".activity.AnalyzeActivity" />
+        <activity android:name=".activity.FoodClassCenterCompareActivity"></activity>
     </application>
 
 </manifest>

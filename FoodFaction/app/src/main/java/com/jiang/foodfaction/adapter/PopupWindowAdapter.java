@@ -25,7 +25,7 @@ public class PopupWindowAdapter extends RecyclerView.Adapter<BaseHolder>{
     private FoodClassBean.GroupBean.CategoriesBean categoriesBeen;
     private Context context;
 
-    private OnClickListener clickListener;
+private OnClickListener clickListener;
 
     public void setClickListener(OnClickListener clickListener) {
         this.clickListener = clickListener;
@@ -55,6 +55,7 @@ public class PopupWindowAdapter extends RecyclerView.Adapter<BaseHolder>{
             @Override
             public void onClick(View v) {
                clickListener.onItemClick(categoriesBeen.getSub_categories().get(position).getId());
+
                 Log.e(TAG, "onClick: "+categoriesBeen.getSub_categories().get(position).getId());
             }
         });

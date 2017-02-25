@@ -4,6 +4,7 @@ import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
+import android.content.pm.ProviderInfo;
 import android.graphics.Bitmap;
 import android.graphics.drawable.BitmapDrawable;
 import android.support.v7.app.ActionBar;
@@ -60,12 +61,16 @@ public class GrideViewDetails extends BaseActivity implements OnClickListener {
     private ArrayHolder arrayHolder;
 
     private String kind;
-    private int id, number, type;
+    private int id;
+    private String number;
 
     private FoodClassBean.GroupBean.CategoriesBean bean;
 
     private NutrientBean nutrientBean;
     private PopupWindowAdapter popupWindowAdapter;
+
+    private final int POPWINDOW = 0;
+    private final int NUTRINENT = 1;
 
 
     @Override
@@ -90,10 +95,11 @@ public class GrideViewDetails extends BaseActivity implements OnClickListener {
 
         popnutrient.setOutsideTouchable(true);
 
+
         //营养素列表网址
-        String url2 = "http://food.boohee.com/fb/v1/foods/sort_types?token=pxN9j6S1za8PGQzefHxh" +
-                "&user_key=e88bf69a-92d5-4dd4-89af-69aef89dc639&app_version=2.6" +
-                "&app_device=Android&os_version=6.0.1&phone_model=MI+NOTE+LTE&channel=xiaomi ";
+        String url3 = "http://food.boohee.com/fb/v1/foods/sort_types?token=pxN9j6S1za8PGQzefHxh" +
+                "&user_key=e88bf69a-92d5-4dd4-89af-69aef89dc639&app_version=2.6&app_device=Android&os_version=6.0.1" +
+                "&phone_model=MI+NOTE+LTE&channel=xiaomi ";
 
         final NutrientAdapter nutrientAdapter = new NutrientAdapter(this);
 
@@ -110,10 +116,38 @@ public class GrideViewDetails extends BaseActivity implements OnClickListener {
             public void onClick(View v) {
                 popnutrient.setBackgroundDrawable(new BitmapDrawable(getResources(), (Bitmap) null));
                 popnutrient.showAsDropDown(nutrient);
+
+                nutrientAdapter.setOnClickListener(new OnClickListener() {
+                    @Override
+                    public void onItemClick(int position) {
+                        Log.e(TAG, "onItemClick: " + (nutrientBean.getTypes() == null));
+                        number = nutrientBean.getTypes().get(position).getIndex();
+
+                        String url2 = "http://food.boohee.com/fb/v1/foods?kind=" + kind + "&value=" + id + "&order_by=" + number +
+                                "&page=" + pager + "&order_asc=0&token=&user_key=&app_version=2.6&app_device=Android&os_version=5.1"
+                                + "&phone_model=M578CA&channel=meizu";
+
+                        NetTool.getInstance().startRequest(url2, GrideViewDetailsBean.class, new CallBack<GrideViewDetailsBean>() {
+                            @Override
+                            public void onSuccess(GrideViewDetailsBean respomse) {
+                                grideViewDetailsAdapter.setFoodsBeen(respomse.getFoods());
+                                popnutrient.dismiss();
+                            }
+
+                            @Override
+                            public void onError(Throwable throwable) {
+
+                            }
+                        });
+
+                    }
+                });
+
+
             }
         });
-
-        NetTool.getInstance().startRequest(url2, NutrientBean.class, new CallBack<NutrientBean>() {
+        //解析营养素排序表
+        NetTool.getInstance().startRequest(url3, NutrientBean.class, new CallBack<NutrientBean>() {
             @Override
             public void onSuccess(NutrientBean respomse) {
                 nutrientBean = respomse;
@@ -125,7 +159,6 @@ public class GrideViewDetails extends BaseActivity implements OnClickListener {
 
             }
         });
-
 
         linearLayout = (LinearLayout) findViewById(R.id.merge_linearLayout);
         //因为要在同一个界面加载不同的布局,为避免出现空指针的情况,我们需要重新加载布局
@@ -141,7 +174,7 @@ public class GrideViewDetails extends BaseActivity implements OnClickListener {
         popupWindow.setOutsideTouchable(true);
 
         poprecyclerView = (RecyclerView) v.findViewById(R.id.popupWindow_recyclerView);
-//        Log.e(TAG, "initView: " + (poprecyclerView == null));
+
         //让隐藏部分的标题显示
         findViewById(R.id.merge_linearLayout).setVisibility(View.VISIBLE);
     }
@@ -155,9 +188,6 @@ public class GrideViewDetails extends BaseActivity implements OnClickListener {
         bean = getIntent().getParcelableExtra("pop");
         Log.e(TAG, "initData: " + (bean == null));
 
-//        number = bean.getSub_categories().get(type).getId();
-
-
         String url;
 
         foodsBeen = new ArrayList<>();
@@ -167,7 +197,7 @@ public class GrideViewDetails extends BaseActivity implements OnClickListener {
 
         recyclerView.setAdapter(grideViewDetailsAdapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(GrideViewDetails.this));
-
+        //显示加载的页面
         url = "http://food.boohee.com/fb/v1/foods?kind=" + kind + "&value=" + id + "&order_by=1" +
                 "&page=" + pager + "&order_asc=0&token=&user_key=&app_version=2.6&app_device=Android&os_version=5.1" +
                 "&phone_model=M578CA&channel=meizu";
@@ -219,7 +249,6 @@ public class GrideViewDetails extends BaseActivity implements OnClickListener {
 
 
             public void onClick(View v) {
-
                 popupWindow.setBackgroundDrawable(new BitmapDrawable(getResources(), (Bitmap) null));
                 //设置popWindow显示的位置
                 popupWindow.showAsDropDown(linearLayout);
@@ -235,34 +264,28 @@ public class GrideViewDetails extends BaseActivity implements OnClickListener {
 
     @Override
     public void onItemClick(int Id) {
-
-//        food.boohee.com/fb/v1/foods?kind=group&value=1&sub_value=13&order_by=1&page=1
-//        &order_asc=0&token=pxN9j6S1za8PGQzefHxh&user_key=e88bf69a-92d5-4dd4-89af-69aef89dc639&app_version=2.6
-//        &app_device=Android&os_version=6.0.1&phone_model=MI+NOTE+LTE&channel=xiaomi
+        //popWindow的行点击事件
         String urlTwo = "http://food.boohee.com/fb/v1/foods?kind=" + kind + "&value=" + id +
                 "&sub_value=" + Id + "&order_by=1&page="
                 + pager + "&order_asc=0&token=&user_key=&app_version=2.6&app_device=Android&os_version=5.1" +
                 "&phone_model=M578CA&channel=meizu";
         Log.e(TAG, "onItemClick: " + urlTwo);
-        NetTool.getInstance().startRequest(urlTwo, FoodClassBean.GroupBean.CategoriesBean.class,
-                new CallBack<FoodClassBean.GroupBean.CategoriesBean>() {
-                    @Override
-                    public void onSuccess(FoodClassBean.GroupBean.CategoriesBean respomse) {
-                        bean.addAll(respomse);
-                        popupWindowAdapter.setCategoriesBeen(bean);
+        NetTool.getInstance().startRequest(urlTwo, GrideViewDetailsBean.class, new CallBack<GrideViewDetailsBean>() {
+            @Override
+            public void onSuccess(GrideViewDetailsBean respomse) {
+                grideViewDetailsAdapter.setFoodsBeen(respomse.getFoods());
+                popupWindow.dismiss();
+            }
 
-                    }
+            @Override
+            public void onError(Throwable throwable) {
 
-                    @Override
-                    public void onError(Throwable throwable) {
-                        Log.d(TAG, throwable.getMessage());
-                    }
-                });
+            }
+        });
     }
 
-
     class ArrayHolder extends BroadcastReceiver {
-
+        //接受到广播滑动到下一页
         @Override
         public void onReceive(Context context, Intent intent) {
 

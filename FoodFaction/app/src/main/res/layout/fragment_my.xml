@@ -18,6 +18,15 @@
         android:text="我的"
         android:textSize="20sp" />
 
+    <ImageView
+        android:id="@+id/my_setting"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_alignTop="@id/my_title"
+        android:src="@mipmap/my_setting"
+        android:layout_marginRight="10dp"/>
+
     <TextView
         android:id="@+id/register"
         android:layout_width="wrap_content"
