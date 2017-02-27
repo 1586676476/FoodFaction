@@ -7,6 +7,7 @@ import android.util.Log;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 
 import com.jiang.foodfaction.R;
@@ -31,8 +32,10 @@ public class FoodClassAboveDetailsActivity extends BaseActivity {
     private FoodClassAboveBean data;
     private RecyclerView recyclerView;
     private FoodClassAboveAdapter foodClassAboveAdapter;
-    private LinearLayout linearLayout;
+
     private EditText editText;
+
+    private ImageView imageView,search;
 
     private String url = "http://food.boohee.com/fb/v1/keywords?token=pxN9j6S1za8PGQzefHxh&user_key=e88bf69a-92d5-4dd4-89af-69aef89dc639&" +
             "app_version=2.6&app_device=Android&os_version=6.0.1&phone_model=MI+NOTE+LTE&channel=xiaomi";
@@ -45,13 +48,21 @@ public class FoodClassAboveDetailsActivity extends BaseActivity {
     @Override
     public void initView() {
         recyclerView = (RecyclerView) findViewById(R.id.foodclass_above_details_recyclerView);
-        linearLayout = (LinearLayout) findViewById(R.id.foodclass_above_details_linearLayout);
+        imageView = (ImageView) findViewById(R.id.foodclass_above_details_back);
         editText = (EditText) findViewById(R.id.foodclass_above_details_editText);
+
+        search = (ImageView) findViewById(R.id.foodclass_above_details_search);
+
+        imageView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
     }
 
     @Override
     public void initData() {
-
 
         foodClassAboveAdapter = new FoodClassAboveAdapter(this);
         foodClassAboveAdapter.setAbove(data);
@@ -72,15 +83,17 @@ public class FoodClassAboveDetailsActivity extends BaseActivity {
 
             }
         });
-//        Timer timer = new Timer();
-//        timer.schedule(new TimerTask() {
-//            @Override
-//            public void run() {
-//                InputMethodManager manager = (InputMethodManager) editText.
-//                        getContext().getSystemService(Context.INPUT_METHOD_SERVICE);
-//                manager.showSoftInput(editText, 0);
-//            }
-//        }, 500);
+
+        //进入界面后一秒钟弹出软键盘
+        Timer timer=new Timer();
+        timer.schedule(new TimerTask() {
+            @Override
+            public void run() {
+                InputMethodManager manager= (InputMethodManager) editText.getContext().
+                        getSystemService(Context.INPUT_METHOD_SERVICE);
+                manager.showSoftInput(editText,0);
+            }
+        },1000);
 
     }
 

@@ -28,6 +28,7 @@
         />
 
         <ImageView
+            android:id="@+id/foodclass_above_details_search"
             android:layout_width="50dp"
             android:layout_height="50dp"
             android:src="@mipmap/search"

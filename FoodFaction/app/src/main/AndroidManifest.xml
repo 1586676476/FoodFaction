@@ -27,7 +27,8 @@
         <activity android:name=".activity.HomeDetailsActivity" />
         <activity android:name=".activity.FoodClassAboveDetailsActivity" />
         <activity android:name=".activity.AnalyzeActivity" />
-        <activity android:name=".activity.FoodClassCenterCompareActivity"></activity>
+        <activity android:name=".activity.FoodClassCenterCompareActivity" />
+        <activity android:name=".activity.GrideviewItemDetails"/>
     </application>
 
 </manifest>

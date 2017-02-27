@@ -12,7 +12,6 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.TextView;
 
 import com.jiang.foodfaction.R;
@@ -26,8 +25,6 @@ import com.jiang.foodfaction.inter.OnClickListener;
 
 import java.util.ArrayList;
 import java.util.List;
-
-import de.hdodenhof.circleimageview.CircleImageView;
 
 /**
  * Created by dllo on 17/2/11.
@@ -51,7 +48,6 @@ public class MyFragment extends Fragment implements OnClickListener {
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_my, container, false);
-
         recyclerView = (RecyclerView) view.findViewById(R.id.my_recycler);
         textView = (TextView) view.findViewById(R.id.register);
         return view;
@@ -65,10 +61,12 @@ public class MyFragment extends Fragment implements OnClickListener {
         textView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //判断是否登录
-                boolean register = Register();
-                Log.e(TAG, "onActivityCreated: " + register);
-                if (register) {
+                //跳转到登录界面
+                toRegister();
+//                //判断是否登录
+//                boolean register = register();
+                Log.e(TAG, "onActivityCreated: " + register());
+                if (!register()) {
                     toRegister();
                 }
 
@@ -98,27 +96,28 @@ public class MyFragment extends Fragment implements OnClickListener {
         super.onActivityCreated(savedInstanceState);
     }
 
-    private boolean Register() {
+    //登录了跳转到对应的界面
+    private boolean register() {
         SharedPreferences sharedPreferences = getContext().getSharedPreferences("register", Context.MODE_PRIVATE);
 
-        return sharedPreferences.getBoolean("register", false);
+        return sharedPreferences.getBoolean("register",false);
     }
 
+    //没登录跳转到登录界面
     private void toRegister() {
         Intent ToRegister = new Intent(getContext(), RegisterActivity.class);
         startActivity(ToRegister);
     }
 
-
     @Override
     public void onItemClick(int position) {
 
-        //判断是否登录
-        boolean register = Register();
+//        //判断是否登录
+//        boolean register = register();
 
         switch (position) {
             case 0:
-                if (register) {
+                if (register()) {
                     Intent intent = new Intent(getContext(), MyCameraActivity.class);
                     startActivity(intent);
                 } else {
@@ -126,7 +125,7 @@ public class MyFragment extends Fragment implements OnClickListener {
                 }
                 break;
             case 1:
-                if (register) {
+                if (register()) {
                     Intent ToCollect = new Intent(getContext(), CollectActivity.class);
                     startActivity(ToCollect);
                 } else {
@@ -134,7 +133,7 @@ public class MyFragment extends Fragment implements OnClickListener {
                 }
                 break;
             case 2:
-                if (register) {
+                if (register()) {
                     Intent ToUploading = new Intent(getContext(), UpLoadingActivity.class);
                     startActivity(ToUploading);
                 } else {
@@ -147,8 +146,6 @@ public class MyFragment extends Fragment implements OnClickListener {
 
 
     }
-
-
 
 
 }

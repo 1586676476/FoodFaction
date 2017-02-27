@@ -18,8 +18,7 @@ public class RegisterActivity extends BaseActivity {
 
     @Override
     public void initView() {
-//        image = bindView(R.id.register_image);
-//        text = bindView(R.id.register_text);
+
     }
 
     @Override

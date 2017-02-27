@@ -3,6 +3,7 @@ package com.jiang.foodfaction.adapter;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
+import android.content.SharedPreferences;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.RecyclerView.ViewHolder;
 import android.util.Log;
@@ -22,6 +23,7 @@ import com.jiang.foodfaction.activity.AnalyzeActivity;
 import com.jiang.foodfaction.activity.FoodClassAboveDetailsActivity;
 import com.jiang.foodfaction.activity.FoodClassCenterCompareActivity;
 import com.jiang.foodfaction.activity.GrideViewDetails;
+import com.jiang.foodfaction.activity.RegisterActivity;
 import com.jiang.foodfaction.bean.FoodClassBean;
 import com.jiang.foodfaction.inter.OnClickListener;
 
@@ -85,7 +87,7 @@ public class FoodClassAdapter extends RecyclerView.Adapter<ViewHolder> {
         int type = getItemViewType(position);
         switch (type) {
             case 0:
-                AboveHolder aboveHolder= (AboveHolder) holder;
+                AboveHolder aboveHolder = (AboveHolder) holder;
                 ((AboveHolder) holder).linearLayout.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
@@ -95,18 +97,25 @@ public class FoodClassAdapter extends RecyclerView.Adapter<ViewHolder> {
                 });
                 break;
             case 1:
-                CenterHolder centerHolder= (CenterHolder) holder;
-                centerHolder.analyze.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        Intent intent=new Intent(context, AnalyzeActivity.class);
-                        context.startActivity(intent);
-                    }
-                });
+                CenterHolder centerHolder = (CenterHolder) holder;
+//                boolean register = Register();
+//                if (register) {
+                    centerHolder.analyze.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            Intent intent = new Intent(context, AnalyzeActivity.class);
+                            context.startActivity(intent);
+                        }
+                    });
+//                } else {
+//                    Intent intent = new Intent(context, RegisterActivity.class);
+//                    context.startActivity(intent);
+//                }
+
                 centerHolder.compare.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        Intent intent=new Intent(context, FoodClassCenterCompareActivity.class);
+                        Intent intent = new Intent(context, FoodClassCenterCompareActivity.class);
                         context.startActivity(intent);
                     }
                 });
@@ -169,19 +178,21 @@ public class FoodClassAdapter extends RecyclerView.Adapter<ViewHolder> {
 
     class AboveHolder extends RecyclerView.ViewHolder {
         LinearLayout linearLayout;
+
         public AboveHolder(View itemView) {
             super(itemView);
-            linearLayout= (LinearLayout) itemView.findViewById(R.id.foodclass_queue);
+            linearLayout = (LinearLayout) itemView.findViewById(R.id.foodclass_queue);
         }
     }
 
     class CenterHolder extends RecyclerView.ViewHolder {
-        private RadioButton analyze,compare,scan;
+        private RadioButton analyze, compare, scan;
+
         public CenterHolder(View itemView) {
             super(itemView);
-            analyze= (RadioButton) itemView.findViewById(R.id.foodclass_analyze);
-            compare= (RadioButton) itemView.findViewById(R.id.foodclass_compare);
-            scan= (RadioButton) itemView.findViewById(R.id.foodclass_scan);
+            analyze = (RadioButton) itemView.findViewById(R.id.foodclass_analyze);
+            compare = (RadioButton) itemView.findViewById(R.id.foodclass_compare);
+            scan = (RadioButton) itemView.findViewById(R.id.foodclass_scan);
         }
     }
 
@@ -196,5 +207,12 @@ public class FoodClassAdapter extends RecyclerView.Adapter<ViewHolder> {
 
         }
     }
+
+//    //登录了跳转到对应的界面,然后将register改为false
+//    private boolean Register() {
+//        SharedPreferences sharedPreferences = context.getSharedPreferences("register", Context.MODE_PRIVATE);
+//
+//        return sharedPreferences.getBoolean("register", false);
+//    }
 
 }

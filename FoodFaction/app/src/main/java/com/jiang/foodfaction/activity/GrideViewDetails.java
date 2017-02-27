@@ -69,9 +69,6 @@ public class GrideViewDetails extends BaseActivity implements OnClickListener {
     private NutrientBean nutrientBean;
     private PopupWindowAdapter popupWindowAdapter;
 
-    private final int POPWINDOW = 0;
-    private final int NUTRINENT = 1;
-
 
     @Override
     public int bindLayout() {
@@ -191,12 +188,14 @@ public class GrideViewDetails extends BaseActivity implements OnClickListener {
         String url;
 
         foodsBeen = new ArrayList<>();
-
         grideViewDetailsAdapter = new GrideViewDetailsAdapter(this);
-
-
         recyclerView.setAdapter(grideViewDetailsAdapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(GrideViewDetails.this));
+
+        //设置行点击事件
+
+
+
         //显示加载的页面
         url = "http://food.boohee.com/fb/v1/foods?kind=" + kind + "&value=" + id + "&order_by=1" +
                 "&page=" + pager + "&order_asc=0&token=&user_key=&app_version=2.6&app_device=Android&os_version=5.1" +
@@ -216,6 +215,8 @@ public class GrideViewDetails extends BaseActivity implements OnClickListener {
 
             }
         });
+
+
         //初始化封装类,并发送广播
         final Scorell scorell = new Scorell(recyclerView, this);
 
@@ -246,14 +247,13 @@ public class GrideViewDetails extends BaseActivity implements OnClickListener {
 
         linearLayout.setOnClickListener(new View.OnClickListener() {
             @Override
-
-
             public void onClick(View v) {
                 popupWindow.setBackgroundDrawable(new BitmapDrawable(getResources(), (Bitmap) null));
                 //设置popWindow显示的位置
                 popupWindow.showAsDropDown(linearLayout);
             }
         });
+
 
     }
 
@@ -282,7 +282,12 @@ public class GrideViewDetails extends BaseActivity implements OnClickListener {
 
             }
         });
+
+
+
+
     }
+
 
     class ArrayHolder extends BroadcastReceiver {
         //接受到广播滑动到下一页

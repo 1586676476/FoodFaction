@@ -1,5 +1,7 @@
 package com.jiang.foodfaction.activity;
 
+import android.content.Intent;
+import android.content.SharedPreferences;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -9,6 +11,8 @@ import com.jiang.foodfaction.R;
 
 public class AnalyzeActivity extends BaseActivity {
     private ImageView imageView;
+
+    private SharedPreferences sharedPreferences;
 
     @Override
     public int bindLayout() {
@@ -28,10 +32,14 @@ public class AnalyzeActivity extends BaseActivity {
                 finish();
             }
         });
-    }
+
+     }
 
     @Override
     public void bindEvent() {
 
     }
+
+
+
 }

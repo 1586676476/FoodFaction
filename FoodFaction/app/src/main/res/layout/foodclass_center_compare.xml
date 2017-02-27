@@ -18,7 +18,7 @@
             android:id="@+id/foodclass_center_left_image"
             android:layout_width="60dp"
             android:layout_height="60dp"
-            android:src="@mipmap/button_add_disable"
+            android:src="@mipmap/img_compare_add"
             android:layout_marginLeft="80dp"
             android:layout_marginTop="20dp"/>
 
@@ -36,7 +36,7 @@
             android:layout_height="60dp"
             android:layout_marginLeft="20dp"
             android:layout_marginTop="20dp"
-            android:src="@mipmap/button_add_disable"/>
+            android:src="@mipmap/img_compare_add"/>
 
     </LinearLayout>
 
