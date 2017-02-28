@@ -12,6 +12,9 @@ import com.bumptech.glide.Glide;
 import com.jiang.foodfaction.R;
 import com.jiang.foodfaction.bean.GrideViewDetailsBean;
 import com.jiang.foodfaction.bean.GrideViewItemDetailsBean;
+import com.jiang.foodfaction.greendao.BeanDao;
+import com.jiang.foodfaction.greendao.DaoMaster;
+import com.jiang.foodfaction.greendao.DbTool;
 import com.jiang.foodfaction.inter.CallBack;
 import com.jiang.foodfaction.packaging.NetTool;
 
@@ -27,6 +30,8 @@ public class GrideviewItemDetails extends BaseActivity {
     private ImageView imageView, back;
     private boolean isLiked;
 
+    private DbTool dbTool;
+
     @Override
     public int bindLayout() {
         return R.layout.grideview_item_details;
@@ -40,7 +45,8 @@ public class GrideviewItemDetails extends BaseActivity {
         title = (TextView) findViewById(R.id.merge_text);
         imageView = (ImageView) findViewById(R.id.grideview_item_details_linearLayout_image);
         back = (ImageView) findViewById(R.id.include_image);
-    }
+
+      }
 
     @Override
     public void initData() {
@@ -73,6 +79,7 @@ public class GrideviewItemDetails extends BaseActivity {
                     isLiked = false;
                 } else {
                     imageView.setImageResource(R.mipmap.news_keep_heighlight);
+
                     isLiked = true;
                 }
             }

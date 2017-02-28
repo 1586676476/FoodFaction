@@ -7,4 +7,5 @@ package com.jiang.foodfaction.inter;
 public interface CallBack <T>{
     void onSuccess(T respomse);
     void onError(Throwable throwable);
+
 }

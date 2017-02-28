@@ -20,95 +20,92 @@
             android:id="@+id/grideview_item_details_linearLayout_image"
             android:layout_width="40dp"
             android:layout_height="40dp"
-            android:src="@mipmap/news_keep_default"
-            android:layout_marginLeft="-60dp"/>
-        <!--<RadioGroup-->
-            <!--android:layout_width="wrap_content"-->
-            <!--android:layout_height="wrap_content"-->
-            <!--android:layout_marginLeft="-50dp"-->
-            <!--android:layout_marginTop="10dp">-->
+            android:layout_marginLeft="-60dp"
+            android:src="@mipmap/news_keep_default" />
+    </LinearLayout>
 
-            <!--<RadioButton-->
-                <!--style="@style/radioButton"-->
-                <!--android:layout_width="50dp"-->
-                <!--android:layout_height="wrap_content"-->
-                <!--android:drawableTop="@drawable/radio_button_heart" />-->
+    <LinearLayout
+        android:id="@+id/grideview_item_details_linearLayout_center"
+        android:layout_width="360dp"
+        android:layout_height="70dp"
+        android:layout_below="@id/grideview_item_details_linearLayout"
+        android:layout_margin="20dp"
+        android:background="#ffffff">
 
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/grideview_item_details_image"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="10dp"
+            android:src="@mipmap/ic_launcher" />
 
-        <!--</RadioGroup>-->
+        <TextView
+            android:id="@+id/grideview_item_details_above_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="10dp"
+            android:text="123" />
+
+        <TextView
+            android:id="@+id/grideview_item_details_below_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="-25dp"
+            android:layout_marginTop="30dp"
+            android:text="456" />
+
+        <TextView
+            android:id="@+id/grideview_item_details_constant"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="30dp"
+            android:text=" 千卡/每100g" />
+
+        <TextView
+            android:id="@+id/grideview_item_details_kilojoule_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="60dp"
+            android:layout_marginTop="30dp"
+            android:text="千焦" />
+
+        <TextView
+            android:id="@+id/grideview_item_details_kilecalore_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="30dp"
+            android:text="千卡" />
+
 
     </LinearLayout>
 
-    <de.hdodenhof.circleimageview.CircleImageView
-        android:id="@+id/grideview_item_details_image"
-        android:layout_width="40dp"
-        android:layout_height="40dp"
-        android:layout_marginLeft="40dp"
-        android:layout_marginTop="70dp"
-        android:src="@mipmap/ic_launcher" />
 
-    <TextView
-        android:id="@+id/grideview_item_details_above_text"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignTop="@id/grideview_item_details_image"
-        android:layout_marginLeft="10dp"
-        android:layout_toRightOf="@id/grideview_item_details_image"
-        android:text="123" />
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="110dp"
+        android:layout_marginTop="110dp"
+        android:background="#ffffff">
 
-    <TextView
-        android:id="@+id/grideview_item_details_below_text"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/grideview_item_details_above_text"
-        android:layout_marginLeft="10dp"
-        android:layout_toRightOf="@id/grideview_item_details_image"
-        android:text="456" />
+        <TextView
+            android:id="@+id/grideview_item_details_insert"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="70dp"
+            android:layout_marginTop="40dp"
+            android:text="+添加记录"
+            android:textColor="#FF0000" />
 
-    <TextView
-        android:id="@+id/grideview_item_details_constant"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/grideview_item_details_above_text"
-        android:layout_toRightOf="@id/grideview_item_details_below_text"
-        android:text=" 千卡/每100g" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="100dp"
+            android:layout_marginTop="40dp"
+            android:text="+加入对比"
+            android:textColor="#FF0000" />
 
-    <TextView
-        android:id="@+id/grideview_item_details_kilojoule_text"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentRight="true"
-        android:layout_below="@id/grideview_item_details_above_text"
-        android:layout_marginRight="30dp"
-        android:text="千焦" />
-
-    <TextView
-        android:id="@+id/grideview_item_details_kilecalore_text"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/grideview_item_details_above_text"
-        android:layout_marginLeft="150dp"
-        android:layout_toRightOf="@id/grideview_item_details_below_text"
-        android:text="千卡" />
-
-    <TextView
-        android:id="@+id/grideview_item_details_insert"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/grideview_item_details_image"
-        android:layout_marginLeft="70dp"
-        android:layout_marginTop="40dp"
-        android:text="+添加记录"
-        android:textColor="#FF0000" />
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/grideview_item_details_image"
-        android:layout_marginLeft="100dp"
-        android:layout_marginTop="40dp"
-        android:layout_toRightOf="@id/grideview_item_details_insert"
-        android:text="+加入对比"
-        android:textColor="#FF0000" />
+    </LinearLayout>
 
 </RelativeLayout>

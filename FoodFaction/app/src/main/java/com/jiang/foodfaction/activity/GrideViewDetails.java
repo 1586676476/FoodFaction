@@ -302,8 +302,8 @@ public class GrideViewDetails extends BaseActivity implements OnClickListener {
                 @Override
                 public void onSuccess(GrideViewDetailsBean respomse) {
 
-                    foodsBeen.addAll(respomse.getFoods());
-                    grideViewDetailsAdapter.setMore(foodsBeen);
+                    grideViewDetailsAdapter.setFoodsBeen(foodsBeen);
+
                 }
 
                 @Override

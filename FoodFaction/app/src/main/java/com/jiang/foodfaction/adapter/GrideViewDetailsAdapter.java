@@ -33,11 +33,6 @@ public class GrideViewDetailsAdapter extends RecyclerView.Adapter<BaseHolder> {
         notifyDataSetChanged();
     }
 
-    public void setMore(List<GrideViewDetailsBean.FoodsBean> list){
-        list.addAll(list);
-        notifyDataSetChanged();
-    }
-
     public GrideViewDetailsAdapter(Context context) {
 
         this.context = context;

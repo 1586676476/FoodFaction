@@ -29,6 +29,7 @@
         <activity android:name=".activity.AnalyzeActivity" />
         <activity android:name=".activity.FoodClassCenterCompareActivity" />
         <activity android:name=".activity.GrideviewItemDetails"/>
+        <activity android:name=".activity.SearchDetailsActivity"/>
     </application>
 
 </manifest>

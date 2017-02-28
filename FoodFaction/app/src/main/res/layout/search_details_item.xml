@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <de.hdodenhof.circleimageview.CircleImageView
+        android:id="@+id/search_details_recyclerView_circle"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:src="@mipmap/ic_launcher"/>
+
+    <TextView
+        android:id="@+id/search_details_recyclerView_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_toRightOf="@id/search_details_recyclerView_circle"
+        android:text="123"
+        android:layout_marginTop="8dp"
+
+        />
+
+    <TextView
+        android:id="@+id/search_details_recyclerView_energy"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="456"
+        android:layout_below="@id/search_details_recyclerView_name"
+        android:layout_toRightOf="@id/search_details_recyclerView_circle"/>
+
+    <ImageView
+        android:id="@+id/search_recycleView_image"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@mipmap/food_light_red"
+        android:layout_alignParentRight="true"
+        android:layout_marginTop="20dp"
+        android:layout_marginRight="10dp"/>
+
+</RelativeLayout>

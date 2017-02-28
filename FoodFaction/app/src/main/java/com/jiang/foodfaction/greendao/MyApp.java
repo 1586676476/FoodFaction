@@ -22,13 +22,13 @@ public class MyApp extends Application {
     }
 
     //初始化daomaster
-    private static DaoMaster getDaoMaster(){
+    public static DaoMaster getDaoMaster(){
         DaoMaster.DevOpenHelper helper=new DaoMaster.DevOpenHelper(getContext(),"MyGreenDao.db",null);
         daoMaster=new DaoMaster(helper.getWritableDb());
         return daoMaster;
     }
     //初始化daosession
-    private static DaoSession getDaoSession(){
+    public static DaoSession getDaoSession(){
         if (daoSession==null){
             if (daoMaster==null){
                 daoMaster=getDaoMaster();
@@ -37,4 +37,5 @@ public class MyApp extends Application {
         daoSession=getDaoMaster().newSession();
         return daoSession;
     }
+
 }
