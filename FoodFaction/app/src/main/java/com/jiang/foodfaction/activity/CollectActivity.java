@@ -73,4 +73,6 @@ public class CollectActivity extends BaseActivity {
     public void bindEvent() {
 
     }
+
+
 }

@@ -38,4 +38,5 @@ dependencies {
     compile 'org.greenrobot:eventbus:3.0.0'
     compile 'de.hdodenhof:circleimageview:2.1.0'
     compile 'org.greenrobot:greendao:3.2.0'
+    compile files('libs/MobCommons-2017.0216.1054.jar')
 }

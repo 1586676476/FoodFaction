@@ -19,8 +19,16 @@
             android:layout_width="60dp"
             android:layout_height="60dp"
             android:src="@mipmap/img_compare_add"
-            android:layout_marginLeft="80dp"
+            android:layout_marginLeft="70dp"
             android:layout_marginTop="20dp"/>
+        <TextView
+            android:id="@+id/foodclass_center_left_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="名字"
+            android:layout_marginTop="80dp"
+            android:layout_marginLeft="-45dp"
+            android:visibility="gone"/>
 
         <ImageView
             android:id="@+id/foodclass_center_image"
@@ -37,6 +45,14 @@
             android:layout_marginLeft="20dp"
             android:layout_marginTop="20dp"
             android:src="@mipmap/img_compare_add"/>
+        <TextView
+            android:id="@+id/foodclass_center_right_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="名字"
+            android:layout_marginTop="80dp"
+            android:layout_marginLeft="-45dp"
+            android:visibility="gone"/>
 
     </LinearLayout>
 
@@ -47,5 +63,7 @@
         android:text="营养元素"
         android:layout_below="@id/foodclass_center_compare_linearLayout"
         android:layout_centerHorizontal="true"/>
+
+   
 
 </RelativeLayout>

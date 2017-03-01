@@ -8,7 +8,7 @@ import com.jiang.foodfaction.inter.NetInterface;
 /**
  * Created by dllo on 17/2/11.
  */
-public class NetTool implements NetInterface{
+public class NetTool implements NetInterface {
 
     private static final String TAG = "NetTool";
     private NetInterface netInterface;
@@ -19,9 +19,9 @@ public class NetTool implements NetInterface{
         //双重校验锁
         if (ourInstance == null) {
             synchronized (NetTool.class) {
-            }
-            if (ourInstance == null) {
-                ourInstance = new NetTool();
+                if (ourInstance == null) {
+                    ourInstance = new NetTool();
+                }
             }
 
         }
@@ -29,11 +29,11 @@ public class NetTool implements NetInterface{
     }
 
     private NetTool() {
-        netInterface=new OkTool();
+        netInterface = new OkTool();
     }
 
     @Override
     public <T> void startRequest(String url, Class<T> tClass, CallBack<T> tCallBack) {
-        netInterface.startRequest(url,tClass,tCallBack);
+        netInterface.startRequest(url, tClass, tCallBack);
     }
 }

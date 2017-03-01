@@ -7,11 +7,17 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
 import com.jiang.foodfaction.R;
+import com.jiang.foodfaction.bean.SearchDetailsEventBus;
+
+import org.greenrobot.eventbus.EventBus;
+import org.greenrobot.eventbus.Subscribe;
+import org.greenrobot.eventbus.ThreadMode;
 
 public class FoodClassCenterCompareActivity extends BaseActivity implements View.OnClickListener {
-    private ImageView imageView,leftImageView,rightImageView;
-    private TextView textView;
+    private ImageView imageView, leftImageView, rightImageView;
+    private TextView textView, leftText, rightText;
 
     @Override
     public int bindLayout() {
@@ -24,18 +30,23 @@ public class FoodClassCenterCompareActivity extends BaseActivity implements View
         textView = (TextView) findViewById(R.id.merge_text);
         leftImageView = (ImageView) findViewById(R.id.foodclass_center_left_image);
         rightImageView = (ImageView) findViewById(R.id.foodclass_center_right_image);
+        leftText = (TextView) findViewById(R.id.foodclass_center_left_text);
+        rightText = (TextView) findViewById(R.id.foodclass_center_right_text);
+        //对eventbus进行注册操作
+        EventBus.getDefault().register(this);
     }
 
     @Override
     public void initData() {
         //设置标题
         textView.setText("对比详情");
-
         leftImageView.setOnClickListener(this);
         rightImageView.setOnClickListener(this);
         imageView.setOnClickListener(this);
-
-     }
+        //让文字显示
+        leftText.setVisibility(View.VISIBLE);
+        rightText.setVisibility(View.VISIBLE);
+    }
 
     @Override
     public void bindEvent() {
@@ -44,22 +55,41 @@ public class FoodClassCenterCompareActivity extends BaseActivity implements View
 
     @Override
     public void onClick(View v) {
-        switch (v.getId()){
+        switch (v.getId()) {
             //点击返回上一个页面
             case R.id.include_image:
                 finish();
                 break;
             //点击时跳转到搜索页面
             case R.id.foodclass_center_left_image:
-                Intent intent=new Intent(this,FoodClassAboveDetailsActivity.class);
+                Intent intent = new Intent(this, FoodClassAboveDetailsActivity.class);
                 startActivity(intent);
                 break;
             //点击调到搜索界面
             case R.id.foodclass_center_right_image:
-                Intent intentright=new Intent(this,FoodClassAboveDetailsActivity.class);
+                Intent intentright = new Intent(this, FoodClassAboveDetailsActivity.class);
                 startActivity(intentright);
                 break;
 
         }
     }
+
+    //添加注解 声明线程的类型,使这个方法运行在主线程
+    @Subscribe(threadMode = ThreadMode.MAIN)
+    public void getEventBus(SearchDetailsEventBus searchDetailsEventBus) {
+
+        leftText.setText(searchDetailsEventBus.getName());
+        rightText.setText(searchDetailsEventBus.getName());
+
+        Glide.with(this).load(searchDetailsEventBus.getThumb_image_url()).into(leftImageView);
+        Glide.with(this).load(searchDetailsEventBus.getThumb_image_url()).into(rightImageView);
+    }
+
+    //销毁eventBus
+
+    protected void onDestory() {
+        super.onDestroy();
+        EventBus.getDefault().unregister(this);
+    }
+
 }

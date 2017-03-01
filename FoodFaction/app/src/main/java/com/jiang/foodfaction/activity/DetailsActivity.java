@@ -19,7 +19,6 @@ public class DetailsActivity extends BaseActivity {
     private WebView webView;
 
 
-
     @Override
     public int bindLayout() {
         return R.layout.activity_details;

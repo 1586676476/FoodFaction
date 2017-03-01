@@ -35,4 +35,6 @@ public abstract class BaseActivity extends AppCompatActivity {
     protected <T extends View> T bindView(int resId) {
         return (T) findViewById(resId);
     }
+
+
 }
