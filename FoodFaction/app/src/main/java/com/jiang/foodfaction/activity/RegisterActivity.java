@@ -1,5 +1,10 @@
 package com.jiang.foodfaction.activity;
 
+import android.content.Context;
+import android.content.Intent;
+import android.content.SharedPreferences;
+import android.provider.SyncStateContract;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.ImageView;
@@ -22,8 +27,7 @@ import cn.sharesdk.tencent.qq.QQ;
 
 public class RegisterActivity extends BaseActivity implements View.OnClickListener {
     private ImageView QQ, weibo,picture;
-
-
+    private static final String TAG = "RegisterActivity";
 
     @Override
     public int bindLayout() {
@@ -42,8 +46,6 @@ public class RegisterActivity extends BaseActivity implements View.OnClickListen
         ShareSDK.initSDK(this);
         QQ.setOnClickListener(this);
         weibo.setOnClickListener(this);
-
-
     }
 
     @Override
@@ -81,6 +83,14 @@ public class RegisterActivity extends BaseActivity implements View.OnClickListen
                 qq.showUser(null);//执行登录，登录后在回调里面获取用户资料
                 String image=qq.getDb().getUserIcon();
                 Glide.with(this).load(image).into(picture);
+                //当我登录后,将其状态存入本地
+//                SharedPreferences.Editor editor=getSharedPreferences("user",MODE_PRIVATE).edit();
+//                //判断是否登录
+//                editor.putBoolean("register",true);
+//                editor.commit();
+                finish();
+                //登录后发送一条广播
+                sendBroadcast(new Intent("CHANGE"));
                 break;
             case R.id.register_weibo:
 

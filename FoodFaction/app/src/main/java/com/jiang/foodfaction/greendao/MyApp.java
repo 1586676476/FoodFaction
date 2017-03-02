@@ -4,10 +4,11 @@ import android.app.Application;
 import android.content.Context;
 
 /**
- * Created by dllo on 17/2/27.
+ * Created by dllo on 17/3/2.
  */
 
 public class MyApp extends Application {
+
     private static Context context;
     private static DaoMaster daoMaster;
     private static DaoSession daoSession;
@@ -15,27 +16,28 @@ public class MyApp extends Application {
     @Override
     public void onCreate() {
         super.onCreate();
-        context=getApplicationContext();
+        context = getApplicationContext();
     }
-    private static Context getContext(){
+
+    public static Context getContext() {
         return context;
     }
 
-    //初始化daomaster
-    public static DaoMaster getDaoMaster(){
-        DaoMaster.DevOpenHelper helper=new DaoMaster.DevOpenHelper(getContext(),"MyGreenDao.db",null);
-        daoMaster=new DaoMaster(helper.getWritableDb());
+    public static DaoMaster getDaoMaster() {
+        //初始化并且建表
+        DaoMaster.DevOpenHelper helper = new DaoMaster.DevOpenHelper(getContext(), "MyGreenDao", null);
+        daoMaster = new DaoMaster(helper.getWritableDb());
         return daoMaster;
     }
-    //初始化daosession
-    public static DaoSession getDaoSession(){
-        if (daoSession==null){
-            if (daoMaster==null){
-                daoMaster=getDaoMaster();
+
+    public static DaoSession getDaoSession() {
+        if (daoSession == null) {
+
+            if (daoMaster == null) {
+                daoMaster = getDaoMaster();
             }
         }
-        daoSession=getDaoMaster().newSession();
+        daoSession = daoMaster.newSession();
         return daoSession;
     }
-
 }

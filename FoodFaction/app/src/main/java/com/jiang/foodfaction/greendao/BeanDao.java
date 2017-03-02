@@ -13,7 +13,7 @@ import org.greenrobot.greendao.database.DatabaseStatement;
 /** 
  * DAO for table "BEAN".
 */
-public class BeanDao extends AbstractDao<Bean, Long> {
+public class BeanDao extends AbstractDao<Bean, String> {
 
     public static final String TABLENAME = "BEAN";
 
@@ -22,9 +22,8 @@ public class BeanDao extends AbstractDao<Bean, Long> {
      * Can be used for QueryBuilder and for referencing column names.
      */
     public static class Properties {
-        public final static Property Id = new Property(0, Long.class, "id", true, "_id");
-        public final static Property Name = new Property(1, String.class, "name", false, "NAME");
-        public final static Property Content = new Property(2, String.class, "content", false, "CONTENT");
+        public final static Property Url = new Property(0, String.class, "url", true, "URL");
+        public final static Property Title = new Property(1, String.class, "title", false, "TITLE");
     }
 
 
@@ -40,9 +39,8 @@ public class BeanDao extends AbstractDao<Bean, Long> {
     public static void createTable(Database db, boolean ifNotExists) {
         String constraint = ifNotExists? "IF NOT EXISTS ": "";
         db.execSQL("CREATE TABLE " + constraint + "\"BEAN\" (" + //
-                "\"_id\" INTEGER PRIMARY KEY ," + // 0: id
-                "\"NAME\" TEXT," + // 1: name
-                "\"CONTENT\" TEXT);"); // 2: content
+                "\"URL\" TEXT PRIMARY KEY NOT NULL ," + // 0: url
+                "\"TITLE\" TEXT);"); // 1: title
     }
 
     /** Drops the underlying database table. */
@@ -55,19 +53,14 @@ public class BeanDao extends AbstractDao<Bean, Long> {
     protected final void bindValues(DatabaseStatement stmt, Bean entity) {
         stmt.clearBindings();
  
-        Long id = entity.getId();
-        if (id != null) {
-            stmt.bindLong(1, id);
+        String url = entity.getUrl();
+        if (url != null) {
+            stmt.bindString(1, url);
         }
  
-        String name = entity.getName();
-        if (name != null) {
-            stmt.bindString(2, name);
-        }
- 
-        String content = entity.getContent();
-        if (content != null) {
-            stmt.bindString(3, content);
+        String title = entity.getTitle();
+        if (title != null) {
+            stmt.bindString(2, title);
         }
     }
 
@@ -75,54 +68,46 @@ public class BeanDao extends AbstractDao<Bean, Long> {
     protected final void bindValues(SQLiteStatement stmt, Bean entity) {
         stmt.clearBindings();
  
-        Long id = entity.getId();
-        if (id != null) {
-            stmt.bindLong(1, id);
+        String url = entity.getUrl();
+        if (url != null) {
+            stmt.bindString(1, url);
         }
  
-        String name = entity.getName();
-        if (name != null) {
-            stmt.bindString(2, name);
-        }
- 
-        String content = entity.getContent();
-        if (content != null) {
-            stmt.bindString(3, content);
+        String title = entity.getTitle();
+        if (title != null) {
+            stmt.bindString(2, title);
         }
     }
 
     @Override
-    public Long readKey(Cursor cursor, int offset) {
-        return cursor.isNull(offset + 0) ? null : cursor.getLong(offset + 0);
+    public String readKey(Cursor cursor, int offset) {
+        return cursor.isNull(offset + 0) ? null : cursor.getString(offset + 0);
     }    
 
     @Override
     public Bean readEntity(Cursor cursor, int offset) {
         Bean entity = new Bean( //
-            cursor.isNull(offset + 0) ? null : cursor.getLong(offset + 0), // id
-            cursor.isNull(offset + 1) ? null : cursor.getString(offset + 1), // name
-            cursor.isNull(offset + 2) ? null : cursor.getString(offset + 2) // content
+            cursor.isNull(offset + 0) ? null : cursor.getString(offset + 0), // url
+            cursor.isNull(offset + 1) ? null : cursor.getString(offset + 1) // title
         );
         return entity;
     }
      
     @Override
     public void readEntity(Cursor cursor, Bean entity, int offset) {
-        entity.setId(cursor.isNull(offset + 0) ? null : cursor.getLong(offset + 0));
-        entity.setName(cursor.isNull(offset + 1) ? null : cursor.getString(offset + 1));
-        entity.setContent(cursor.isNull(offset + 2) ? null : cursor.getString(offset + 2));
+        entity.setUrl(cursor.isNull(offset + 0) ? null : cursor.getString(offset + 0));
+        entity.setTitle(cursor.isNull(offset + 1) ? null : cursor.getString(offset + 1));
      }
     
     @Override
-    protected final Long updateKeyAfterInsert(Bean entity, long rowId) {
-        entity.setId(rowId);
-        return rowId;
+    protected final String updateKeyAfterInsert(Bean entity, long rowId) {
+        return entity.getUrl();
     }
     
     @Override
-    public Long getKey(Bean entity) {
+    public String getKey(Bean entity) {
         if(entity != null) {
-            return entity.getId();
+            return entity.getUrl();
         } else {
             return null;
         }
@@ -130,7 +115,7 @@ public class BeanDao extends AbstractDao<Bean, Long> {
 
     @Override
     public boolean hasKey(Bean entity) {
-        return entity.getId() != null;
+        return entity.getUrl() != null;
     }
 
     @Override

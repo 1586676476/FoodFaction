@@ -12,9 +12,7 @@ import com.bumptech.glide.Glide;
 import com.jiang.foodfaction.R;
 import com.jiang.foodfaction.bean.GrideViewDetailsBean;
 import com.jiang.foodfaction.bean.GrideViewItemDetailsBean;
-import com.jiang.foodfaction.greendao.BeanDao;
-import com.jiang.foodfaction.greendao.DaoMaster;
-import com.jiang.foodfaction.greendao.DbTool;
+
 import com.jiang.foodfaction.inter.CallBack;
 import com.jiang.foodfaction.packaging.NetTool;
 
@@ -30,7 +28,7 @@ public class GrideviewItemDetails extends BaseActivity {
     private ImageView imageView, back;
     private boolean isLiked;
 
-    private DbTool dbTool;
+
 
     @Override
     public int bindLayout() {

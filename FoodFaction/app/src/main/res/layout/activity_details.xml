@@ -1,68 +1,69 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
     <include
         android:id="@+id/include_title"
         layout="@layout/merge" />
 
     <LinearLayout
-    android:id="@+id/layout"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:layout_alignParentBottom="true"
-    android:orientation="horizontal">
+        android:id="@+id/layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:orientation="horizontal">
 
-    <LinearLayout
-    android:id="@+id/enjoy"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
+        <LinearLayout
+            android:id="@+id/enjoy"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
 
-    android:layout_weight="1"
-    android:gravity="center"
-    android:orientation="horizontal">
+            android:layout_weight="1"
+            android:gravity="center"
+            android:orientation="horizontal">
 
-    <ImageView
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:src="@mipmap/photo_share" />
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@mipmap/photo_share" />
 
-    <TextView
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:text="分享" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="分享" />
 
-    </LinearLayout>
+        </LinearLayout>
 
-    <LinearLayout
-    android:id="@+id/collcet"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
+        <LinearLayout
+            android:id="@+id/collcet"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
 
-    android:layout_weight="1"
-    android:gravity="center"
-    android:orientation="horizontal">
+            android:layout_weight="1"
+            android:gravity="center"
+            android:orientation="horizontal">
 
-    <ImageView
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:src="@drawable/collect" />
+            <ImageView
+                android:id="@+id/collect_image"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@mipmap/keepdefault" />
 
-    <TextView
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:text="收藏" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="收藏" />
 
-    </LinearLayout>
+        </LinearLayout>
     </LinearLayout>
 
     <WebView
         android:id="@+id/webView"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_below="@id/include_title"
         android:layout_above="@id/layout"
-        />
+        android:layout_below="@id/include_title" />
 
 </RelativeLayout>

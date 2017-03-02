@@ -107,6 +107,7 @@ public class FoodFragment extends Fragment implements OnClickListener {
     public void onItemClick(int position) {
         Intent intent = new Intent(getActivity(), DetailsActivity.class);
         intent.putExtra("url", list.get(position).getLink());
+        intent.putExtra("titles",list.get(position).getTitle());
         startActivity(intent);
     }
 

@@ -1,50 +1,35 @@
 package com.jiang.foodfaction.greendao;
 
-import android.support.annotation.IdRes;
-
-import com.google.gson.annotations.Expose;
-
 import org.greenrobot.greendao.annotation.Entity;
 import org.greenrobot.greendao.annotation.Id;
 import org.greenrobot.greendao.annotation.Generated;
 
 /**
- * Created by dllo on 17/2/27.
+ * Created by dllo on 17/3/2.
  */
-
 @Entity
 public class Bean {
     @Id
-    private Long id;
-    private String name;
-    private String content;
-    @Generated(hash = 823518727)
-    public Bean(Long id, String name, String content) {
-        this.id = id;
-        this.name = name;
-        this.content = content;
+    private String url;
+    private String title;
+    @Generated(hash = 2139430122)
+    public Bean(String url, String title) {
+        this.url = url;
+        this.title = title;
     }
     @Generated(hash = 80546095)
     public Bean() {
     }
-    public Long getId() {
-        return this.id;
+    public String getUrl() {
+        return this.url;
     }
-    public void setId(Long id) {
-        this.id = id;
+    public void setUrl(String url) {
+        this.url = url;
     }
-    public String getName() {
-        return this.name;
+    public String getTitle() {
+        return this.title;
     }
-    public void setName(String name) {
-        this.name = name;
+    public void setTitle(String title) {
+        this.title = title;
     }
-    public String getContent() {
-        return this.content;
-    }
-    public void setContent(String content) {
-        this.content = content;
-    }
-
-
 }

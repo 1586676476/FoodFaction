@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -24,7 +25,7 @@ public class HomeDetailsActivity extends BaseActivity {
 
     private CircleImageView avatar;
     private TextView name;
-    private ImageView imageView;
+    private ImageView imageView,back;
     private TextView number;
 
     private HomeDeatailsBean data;
@@ -40,7 +41,7 @@ public class HomeDetailsActivity extends BaseActivity {
         name = bindView(R.id.homeDetails_name);
         imageView = bindView(R.id.homeDetails_url);
         number = bindView(R.id.homeDetails_number);
-
+        back=bindView(R.id.include_image);
     }
 
     @Override
@@ -68,6 +69,13 @@ public class HomeDetailsActivity extends BaseActivity {
             @Override
             public void onError(Throwable throwable) {
 
+            }
+        });
+
+        back.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
             }
         });
 

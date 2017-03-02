@@ -16,6 +16,7 @@
         android:layout_centerHorizontal="true"
         android:layout_margin="10dp"
         android:text="我的"
+        android:textColor="#ffffff"
         android:textSize="20sp" />
 
     <ImageView
@@ -35,6 +36,7 @@
         android:layout_centerHorizontal="true"
         android:layout_marginTop="60dp"
         android:text="点击登录"
+        android:textColor="#ffffff"
         android:textSize="20sp" />
 
     <android.support.v7.widget.RecyclerView
@@ -49,6 +51,17 @@
         android:layout_height="60dp"
         android:src="@mipmap/default_avatar"
         android:layout_below="@+id/my_setting"
-        android:layout_alignLeft="@+id/register"
-        android:layout_alignStart="@+id/register" />
+        android:layout_centerHorizontal="true" />
+
+    <TextView
+        android:id="@+id/my_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="修改个人资料"
+        android:textColor="#ffffff"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@id/my_title"
+        android:layout_marginTop="80dp"
+        android:visibility="gone"/>
+
 </RelativeLayout>

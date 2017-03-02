@@ -35,21 +35,21 @@ import java.util.List;
 
 public class KnowledgeFragment extends Fragment implements OnClickListener {
 
-    private String url="http://food.boohee.com/fb/v1/feeds/category_feed?page=1&category=3&per=10";
+    private String url = "http://food.boohee.com/fb/v1/feeds/category_feed?page=1&category=3&per=10";
 
     private List<KnowledgeBean.FeedsBean> list;
     private RecyclerView recyclerView;
     private KnowledgeAdapter knowledgeAdapter;
 
-    private int pager=1;
+    private int pager = 1;
 
     private Receiver receiver;
 
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View view=inflater.inflate(R.layout.fragment_knowledge,container,false);
-        recyclerView= (RecyclerView) view.findViewById(R.id.knowledge_recycleView);
+        View view = inflater.inflate(R.layout.fragment_knowledge, container, false);
+        recyclerView = (RecyclerView) view.findViewById(R.id.knowledge_recycleView);
         return view;
     }
 
@@ -57,15 +57,15 @@ public class KnowledgeFragment extends Fragment implements OnClickListener {
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
 
-        list=new ArrayList<>();
+        list = new ArrayList<>();
 
-        knowledgeAdapter=new KnowledgeAdapter(getContext());
+        knowledgeAdapter = new KnowledgeAdapter(getContext());
 
         knowledgeAdapter.setFeedsBeen(list);
 
-       knowledgeAdapter.setOnClickListener(this);
+        knowledgeAdapter.setOnClickListener(this);
 
-        LinearLayoutManager manager=new LinearLayoutManager(getContext());
+        LinearLayoutManager manager = new LinearLayoutManager(getContext());
 
         recyclerView.setLayoutManager(manager);
 
@@ -74,7 +74,7 @@ public class KnowledgeFragment extends Fragment implements OnClickListener {
         NetTool.getInstance().startRequest(url, KnowledgeBean.class, new CallBack<KnowledgeBean>() {
             @Override
             public void onSuccess(KnowledgeBean respomse) {
-                list=respomse.getFeeds();
+                list = respomse.getFeeds();
                 knowledgeAdapter.setFeedsBeen(list);
             }
 
@@ -98,11 +98,13 @@ public class KnowledgeFragment extends Fragment implements OnClickListener {
         SpaceItemDecoration decoration = new SpaceItemDecoration(16);
         recyclerView.addItemDecoration(decoration);
     }
+
     //响应点击事件
     @Override
     public void onItemClick(int position) {
         Intent intent = new Intent(getActivity(), DetailsActivity.class);
         intent.putExtra("url", list.get(position).getLink());
+        intent.putExtra("titles",list.get(position).getTitle());
         startActivity(intent);
     }
 
@@ -133,7 +135,7 @@ public class KnowledgeFragment extends Fragment implements OnClickListener {
         public void onReceive(Context context, Intent intent) {
 
             pager++;
-            final String url1 = "http://food.boohee.com/fb/v1/feeds/category_feed?page="+ pager + "&category=3&per=10";
+            final String url1 = "http://food.boohee.com/fb/v1/feeds/category_feed?page=" + pager + "&category=3&per=10";
 
             NetTool.getInstance().startRequest(url1, KnowledgeBean.class, new CallBack<KnowledgeBean>() {
 
