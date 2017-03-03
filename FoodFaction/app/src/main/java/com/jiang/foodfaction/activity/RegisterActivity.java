@@ -12,8 +12,13 @@ import android.widget.LinearLayout;
 
 import com.bumptech.glide.Glide;
 import com.jiang.foodfaction.R;
+import com.jiang.foodfaction.bean.RegisterBean;
+
+import org.greenrobot.eventbus.EventBus;
 
 import java.util.HashMap;
+import java.util.Iterator;
+import java.util.Map;
 
 import cn.sharesdk.framework.Platform;
 import cn.sharesdk.framework.PlatformActionListener;
@@ -21,13 +26,19 @@ import cn.sharesdk.framework.ShareSDK;
 import cn.sharesdk.sina.weibo.SinaWeibo;
 import cn.sharesdk.tencent.qq.QQ;
 
+import static android.R.attr.name;
+
 /**
  * Created by dllo on 17/2/16.
  */
 
 public class RegisterActivity extends BaseActivity implements View.OnClickListener {
-    private ImageView QQ, weibo,picture;
+    private ImageView QQ;
+    private ImageView weibo;
+    private String picture,text;
     private static final String TAG = "RegisterActivity";
+
+    private EventBus eventBus;
 
     @Override
     public int bindLayout() {
@@ -38,7 +49,7 @@ public class RegisterActivity extends BaseActivity implements View.OnClickListen
     public void initView() {
         QQ = (ImageView) findViewById(R.id.register_qq);
         weibo = (ImageView) findViewById(R.id.register_weibo);
-        picture= (ImageView) LayoutInflater.from(this).inflate(R.layout.fragment_my,null).findViewById(R.id.circleImageView);
+        eventBus=EventBus.getDefault();
     }
 
     @Override
@@ -65,6 +76,7 @@ public class RegisterActivity extends BaseActivity implements View.OnClickListen
                     public void onError(Platform arg0, int arg1, Throwable arg2) {
                         // TODO Auto-generated method stub
                         arg2.printStackTrace();
+
                     }
 
                     @Override
@@ -72,6 +84,29 @@ public class RegisterActivity extends BaseActivity implements View.OnClickListen
                         // TODO Auto-generated method stub
                         //输出所有授权信息
                         arg0.getDb().exportData();
+                        //遍历Map
+                        Iterator ite =arg2.entrySet().iterator();
+                        while (ite.hasNext()) {
+                            Map.Entry entry = (Map.Entry)ite.next();
+                            Object key = entry.getKey();
+                            if(key.toString().equals("nickname")){
+                               text = entry.getValue().toString();
+                                Log.e(TAG, "onComplete: " + name);
+                            }
+                            if(key.toString().equals("figureurl_qq_2")){
+                                picture = entry.getValue().toString();
+                                Log.e(TAG, "onComplete: " + picture);
+
+                            }
+
+                        }
+
+//                        RegisterBean registerBean=new RegisterBean();
+//                        //registerBean.setNameTv(text);
+////                        registerBean.setPhoto(picture);
+//                        eventBus.post(text);
+//                        eventBus.post(picture);
+
                     }
 
                     @Override
@@ -81,13 +116,8 @@ public class RegisterActivity extends BaseActivity implements View.OnClickListen
                     }
                 });
                 qq.showUser(null);//执行登录，登录后在回调里面获取用户资料
-                String image=qq.getDb().getUserIcon();
-                Glide.with(this).load(image).into(picture);
-                //当我登录后,将其状态存入本地
-//                SharedPreferences.Editor editor=getSharedPreferences("user",MODE_PRIVATE).edit();
-//                //判断是否登录
-//                editor.putBoolean("register",true);
-//                editor.commit();
+
+               // Glide.with(this).load(image).into(picture);
                 finish();
                 //登录后发送一条广播
                 sendBroadcast(new Intent("CHANGE"));

@@ -70,6 +70,11 @@ public class DetailsActivity extends BaseActivity {
             }
         });
 
+        //判断数据库中的url
+        if(bean!=null&&DbTool.getInStance().queueUrl(bean)){
+            collect.setImageResource(R.mipmap.news_keep_heighlight);
+        }
+
 
         WebSettings settings = webView.getSettings();
         settings.setJavaScriptEnabled(true);
@@ -94,6 +99,18 @@ public class DetailsActivity extends BaseActivity {
                 }
             }
         });
+
+
+//        webView.loadUrl(String.valueOf(data));
+//
+//        webView.setWebViewClient(new WebViewClient() {
+//            @Override
+//            public boolean shouldOverrideUrlLoading(WebView view, WebResourceRequest request) {
+//                view.loadUrl(String.valueOf(data));
+//                return true;
+//            }
+//        });
+
 
     }
 

@@ -3,6 +3,7 @@ package com.jiang.foodfaction.greendao;
 import org.greenrobot.greendao.query.DeleteQuery;
 import org.greenrobot.greendao.query.QueryBuilder;
 
+import java.net.URL;
 import java.util.List;
 
 /**
@@ -60,6 +61,12 @@ public class DbTool {
     public List<Bean> queueAll() {
         List<Bean> list = beanDao.loadAll();
         return list;
+    }
+    //查询是否是bean中的某一个部分
+    public boolean queueUrl(Bean bean){
+        Bean queueBean = beanDao.queryBuilder().where(BeanDao.Properties.Url.eq(bean.getUrl())).build().unique();
+
+        return queueBean == null ? false : true;
     }
 
     //查重的方法

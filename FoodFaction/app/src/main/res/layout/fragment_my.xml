@@ -52,6 +52,14 @@
         android:src="@mipmap/default_avatar"
         android:layout_below="@+id/my_setting"
         android:layout_centerHorizontal="true" />
+    <TextView
+        android:id="@+id/my_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="hahahahaha"
+        android:layout_below="@id/circleImageView"
+        android:layout_centerHorizontal="true"
+        android:visibility="gone"/>
 
     <TextView
         android:id="@+id/my_text"

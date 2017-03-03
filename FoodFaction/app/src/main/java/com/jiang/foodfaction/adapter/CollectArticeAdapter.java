@@ -48,6 +48,7 @@ public class CollectArticeAdapter extends BaseAdapter {
     public View getView(int position, View convertView, ViewGroup parent) {
         BaseHolder baseHolder=BaseHolder.creatListHolder(convertView,parent, R.layout.collect_artice_listview_item);
         baseHolder.setText(R.id.collect_artice_listView_text,list.get(position).getTitle());
+
         return baseHolder.getjView();
     }
 }

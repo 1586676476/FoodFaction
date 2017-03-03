@@ -23,4 +23,5 @@
         android:layout_height="1dp"
         android:background="#a1afc9"
         android:layout_below="@id/collect_artice_listView_text"/>
+
 </RelativeLayout>

@@ -14,6 +14,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.jiang.foodfaction.R;
@@ -23,7 +24,12 @@ import com.jiang.foodfaction.activity.RegisterActivity;
 import com.jiang.foodfaction.activity.UpLoadingActivity;
 import com.jiang.foodfaction.adapter.MyAdapter;
 import com.jiang.foodfaction.bean.MyBean;
+import com.jiang.foodfaction.bean.RegisterBean;
 import com.jiang.foodfaction.inter.OnClickListener;
+
+import org.greenrobot.eventbus.EventBus;
+import org.greenrobot.eventbus.Subscribe;
+import org.greenrobot.eventbus.ThreadMode;
 
 import java.security.PrivateKey;
 import java.util.ArrayList;
@@ -36,11 +42,12 @@ import java.util.List;
 public class MyFragment extends Fragment implements OnClickListener {
 
     private ArrayReceiver arrayReceiver;
-    private TextView textView, change;
+    private TextView textView, change, name;
     private static final String TAG = "MyFragment";
     private List<MyBean> list;
     private RecyclerView recyclerView;
     private MyAdapter myAdapter;
+    private ImageView imageView;
 
 
     private int[] left = new int[]{R.mipmap.my_photo, R.mipmap.my_collect, R.mipmap.my_upload, R.mipmap.my_order};
@@ -55,9 +62,14 @@ public class MyFragment extends Fragment implements OnClickListener {
         recyclerView = (RecyclerView) view.findViewById(R.id.my_recycler);
         textView = (TextView) view.findViewById(R.id.register);
         change = (TextView) view.findViewById(R.id.my_text);
+        imageView = (ImageView) view.findViewById(R.id.circleImageView);
+        name = (TextView) view.findViewById(R.id.my_name);
+
+        //初始化EventBus
+        //EventBus.getDefault().register(this);
 
 
-        if (register()){
+        if (register()) {
             textView.setVisibility(View.GONE);
             change.setVisibility(View.VISIBLE);
         }
@@ -174,6 +186,7 @@ public class MyFragment extends Fragment implements OnClickListener {
 
             textView.setVisibility(View.GONE);
             change.setVisibility(View.VISIBLE);
+            name.setVisibility(View.VISIBLE);
             SharedPreferences sp = getContext().getSharedPreferences("register", Context.MODE_PRIVATE);
             SharedPreferences.Editor editor = sp.edit();
             editor.putBoolean("register", true);
@@ -181,5 +194,18 @@ public class MyFragment extends Fragment implements OnClickListener {
         }
     }
 
-
+//    //接受数据,并让其运行在主线程
+//    @Subscribe(threadMode = ThreadMode.MAIN)
+//    public void getData(RegisterBean registerBean) {
+//        //name.setText(registerBean.getNameTv());
+////        imageView.setImageResource(Integer.parseInt(registerBean.getPhoto()));
+//    }
+//
+//
+//    @Override
+//    public void onDestroy() {
+//        super.onDestroy();
+//        //解除注册
+//        EventBus.getDefault().unregister(this);
+//    }
 }
