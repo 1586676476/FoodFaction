@@ -146,7 +146,9 @@ public class FoodFragment extends Fragment implements OnClickListener {
                 @Override
                 public void onSuccess(FoodBean respomse) {
                     list.addAll(respomse.getFeeds());
-                    foodAdapter.setMore(list);
+                    foodAdapter.setFeedsBeen(list);
+//                    list.addAll(respomse.getFeeds());
+//                    foodAdapter.setMore(list);
                 }
 
                 @Override
@@ -156,5 +158,11 @@ public class FoodFragment extends Fragment implements OnClickListener {
             });
 
         }
+    }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        getContext().unregisterReceiver(receiver);
     }
 }

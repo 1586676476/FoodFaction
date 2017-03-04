@@ -43,6 +43,7 @@
         <activity android:name=".activity.FoodClassCenterCompareActivity" />
         <activity android:name=".activity.GrideviewItemDetails"/>
         <activity android:name=".activity.SearchDetailsActivity"/>
+        <activity android:name=".activity.SettingActivity"/>
 
         <activity
             android:name="com.mob.tools.MobUIShell"

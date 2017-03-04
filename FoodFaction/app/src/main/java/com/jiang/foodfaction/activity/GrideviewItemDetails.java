@@ -77,7 +77,6 @@ public class GrideviewItemDetails extends BaseActivity {
                     isLiked = false;
                 } else {
                     imageView.setImageResource(R.mipmap.news_keep_heighlight);
-
                     isLiked = true;
                 }
             }

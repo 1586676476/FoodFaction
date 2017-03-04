@@ -138,7 +138,7 @@ public class HomeFragment extends Fragment implements OnClickListener{
                 public void onSuccess(ShareHomeBean respomse) {
                     //将所有的请求数据都加入到集合当中,否则只有10条一页数据
                     list.addAll(respomse.getFeeds());
-                    shareHomeAdapter.setMore(list);
+                    shareHomeAdapter.setFeedsBeen(list);
                 }
 
                 @Override

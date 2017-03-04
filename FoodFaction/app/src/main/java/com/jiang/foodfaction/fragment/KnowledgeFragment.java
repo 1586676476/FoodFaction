@@ -83,7 +83,7 @@ public class KnowledgeFragment extends Fragment implements OnClickListener {
 
             }
         });
-
+        //初始化工具类
         Scorell scorell = new Scorell(recyclerView, getContext());
 
         scorell.load();
@@ -142,7 +142,7 @@ public class KnowledgeFragment extends Fragment implements OnClickListener {
                 @Override
                 public void onSuccess(KnowledgeBean respomse) {
                     list.addAll(respomse.getFeeds());
-                    knowledgeAdapter.setMore(list);
+                    knowledgeAdapter.setFeedsBeen(list);
                 }
 
                 @Override

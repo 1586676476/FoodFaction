@@ -35,7 +35,7 @@ import static android.R.attr.name;
 public class RegisterActivity extends BaseActivity implements View.OnClickListener {
     private ImageView QQ;
     private ImageView weibo;
-    private String picture,text;
+    private String picture, text;
     private static final String TAG = "RegisterActivity";
 
     private EventBus eventBus;
@@ -49,7 +49,7 @@ public class RegisterActivity extends BaseActivity implements View.OnClickListen
     public void initView() {
         QQ = (ImageView) findViewById(R.id.register_qq);
         weibo = (ImageView) findViewById(R.id.register_weibo);
-        eventBus=EventBus.getDefault();
+        eventBus = EventBus.getDefault();
     }
 
     @Override
@@ -85,27 +85,30 @@ public class RegisterActivity extends BaseActivity implements View.OnClickListen
                         //输出所有授权信息
                         arg0.getDb().exportData();
                         //遍历Map
-                        Iterator ite =arg2.entrySet().iterator();
+                        Iterator ite = arg2.entrySet().iterator();
                         while (ite.hasNext()) {
-                            Map.Entry entry = (Map.Entry)ite.next();
+                            Map.Entry entry = (Map.Entry) ite.next();
                             Object key = entry.getKey();
-                            if(key.toString().equals("nickname")){
-                               text = entry.getValue().toString();
-                                Log.e(TAG, "onComplete: " + name);
+                            if (key.toString().equals("nickname")) {
+                                text = entry.getValue().toString();
+                                //Log.e(TAG, "onComplete: " + name);
                             }
-                            if(key.toString().equals("figureurl_qq_2")){
+                            if (key.toString().equals("figureurl_qq_2")) {
                                 picture = entry.getValue().toString();
-                                Log.e(TAG, "onComplete: " + picture);
+                                //Log.e(TAG, "onComplete: " + picture);
 
                             }
 
                         }
 
-//                        RegisterBean registerBean=new RegisterBean();
-//                        //registerBean.setNameTv(text);
-////                        registerBean.setPhoto(picture);
-//                        eventBus.post(text);
-//                        eventBus.post(picture);
+                        RegisterBean registerBean = new RegisterBean();
+                        registerBean.setNameTv(text);
+                        registerBean.setPhoto(picture);
+                        //注意 传的是bean对象
+                        eventBus.post(registerBean);
+                        Log.e(TAG, "onComplete: "+text);
+                        eventBus.post(registerBean);
+                        Log.e(TAG, "onComplete: "+picture );
 
                     }
 
@@ -117,7 +120,7 @@ public class RegisterActivity extends BaseActivity implements View.OnClickListen
                 });
                 qq.showUser(null);//执行登录，登录后在回调里面获取用户资料
 
-               // Glide.with(this).load(image).into(picture);
+
                 finish();
                 //登录后发送一条广播
                 sendBroadcast(new Intent("CHANGE"));

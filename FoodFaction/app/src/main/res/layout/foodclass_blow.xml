@@ -5,7 +5,8 @@
     android:layout_height="wrap_content"
     android:layout_marginRight="20dp"
     android:layout_marginLeft="20dp"
-    android:background="@mipmap/home_category">
+    android:background="@mipmap/home_category"
+    >
 
     <!--
        android:stretchMode="columnWidth" 缩放与列宽大小同步
@@ -20,7 +21,8 @@
         android:layout_height="wrap_content"
         android:text="852"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="10dp" />
+        android:layout_marginTop="10dp"
+        />
 
 
 
@@ -33,7 +35,6 @@
         android:layout_marginTop="50dp"
         android:numColumns="3"
         android:stretchMode="columnWidth"
-
         />
 
 </RelativeLayout>

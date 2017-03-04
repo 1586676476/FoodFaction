@@ -87,19 +87,19 @@ public class FoodClassAdapter extends RecyclerView.Adapter<ViewHolder> {
         int type = getItemViewType(position);
         switch (type) {
             case 0:
-                AboveHolder aboveHolder = (AboveHolder) holder;
-                ((AboveHolder) holder).linearLayout.setOnClickListener(new View.OnClickListener() {
+                //点击跳转的时候传一个type判断后面是调到那个界面,默认为0
+               ((AboveHolder) holder).linearLayout.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
                         Intent intent = new Intent(context, FoodClassAboveDetailsActivity.class);
+                        intent.putExtra("type", 0);
                         context.startActivity(intent);
                     }
                 });
                 break;
             case 1:
                 CenterHolder centerHolder = (CenterHolder) holder;
-//                boolean register = Register();
-//                if (register) {
+
                     centerHolder.analyze.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View v) {
@@ -107,15 +107,12 @@ public class FoodClassAdapter extends RecyclerView.Adapter<ViewHolder> {
                             context.startActivity(intent);
                         }
                     });
-//                } else {
-//                    Intent intent = new Intent(context, RegisterActivity.class);
-//                    context.startActivity(intent);
-//                }
 
                 centerHolder.compare.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
                         Intent intent = new Intent(context, FoodClassCenterCompareActivity.class);
+                        intent.putExtra("type", 1);
                         context.startActivity(intent);
                     }
                 });
@@ -208,11 +205,6 @@ public class FoodClassAdapter extends RecyclerView.Adapter<ViewHolder> {
         }
     }
 
-//    //登录了跳转到对应的界面,然后将register改为false
-//    private boolean Register() {
-//        SharedPreferences sharedPreferences = context.getSharedPreferences("register", Context.MODE_PRIVATE);
-//
-//        return sharedPreferences.getBoolean("register", false);
-//    }
+
 
 }

@@ -35,14 +35,14 @@ public class SearchDetailsActivity extends BaseActivity implements View.OnClickL
     private RecyclerView recyclerView;
     private SearchDetailsAdapter searchDetailsAdapter;
     private EditText editText;
-    private ImageView imageView,back;
+    private ImageView imageView, back;
 
-    //private ArrayReceive arrayReceive;
+    private String TYPECOMPARE="compare";
+    private String TYPEDETAILS="details";
     private EventBus eventBus;
 
-    private String url,kind;
-    private String utfStr="";
-    private int pager=1;
+    private String url, kind;
+    private String utfStr = "";
 
     @Override
     public int bindLayout() {
@@ -56,20 +56,20 @@ public class SearchDetailsActivity extends BaseActivity implements View.OnClickL
         imageView = (ImageView) findViewById(R.id.search_details_clear);
         back = (ImageView) findViewById(R.id.search_details_back);
         //初始化eventBus
-        eventBus=EventBus.getDefault();
+        eventBus = EventBus.getDefault();
     }
 
     @Override
     public void initData() {
         //接受我点击位置所传过来的内容
-        Intent intent=getIntent();
-        kind=intent.getStringExtra("name");
+        Intent intent = getIntent();
+        kind = intent.getStringExtra("name");
         //editText显示我搜索的内容
         editText.setText(kind);
         // 将字符串转换为UTF-8编码 要不然会出现解析错误
 
         try {
-            utfStr= URLEncoder.encode(kind,"UTF_8");
+            utfStr = URLEncoder.encode(kind, "UTF_8");
         } catch (UnsupportedEncodingException e) {
             e.printStackTrace();
         }
@@ -87,16 +87,14 @@ public class SearchDetailsActivity extends BaseActivity implements View.OnClickL
         back.setOnClickListener(this);
 
 
-
-        url = "http://food.boohee.com/fb/v1/search?page=1&order_asc=desc&q="+utfStr+
-               " &token=QYCCzzZVYMpoxvYoz8ig&user_key=c538dd6d-c12f-4742-ac0c-7c71ea74aa5e"+
+        url = "http://food.boohee.com/fb/v1/search?page=1&order_asc=desc&q=" + utfStr +
+                " &token=QYCCzzZVYMpoxvYoz8ig&user_key=c538dd6d-c12f-4742-ac0c-7c71ea74aa5e" +
                 "&app_version=2.6&app_device=Android&os_version=6.0.1&phone_model=MI+NOTE+LTE&channel=xiaomi";
         Log.d("SearchDetailsActivity", url);
         NetTool.getInstance().startRequest(url, SearchDetailsBean.class, new CallBack<SearchDetailsBean>() {
             @Override
             public void onSuccess(SearchDetailsBean respomse) {
 
-//                data.addAll(respomse.getItems());
                 searchDetailsAdapter.setItemsBeen(respomse.getItems());
             }
 
@@ -106,14 +104,7 @@ public class SearchDetailsActivity extends BaseActivity implements View.OnClickL
             }
         });
 
-//        //接受广播
-//        arrayReceive=new ArrayReceive();
-//        IntentFilter intentFilter = new IntentFilter("LOADING");
-//        registerReceiver(arrayReceive, intentFilter);
-
-
-
-    }
+        }
 
     @Override
     public void bindEvent() {
@@ -122,7 +113,7 @@ public class SearchDetailsActivity extends BaseActivity implements View.OnClickL
 
     @Override
     public void onClick(View v) {
-        switch (v.getId()){
+        switch (v.getId()) {
             case R.id.search_details_back:
                 break;
             case R.id.search_details_clear:
@@ -132,40 +123,24 @@ public class SearchDetailsActivity extends BaseActivity implements View.OnClickL
 
     @Override
     public void onItemClick(int position) {
-        Intent intent=new Intent(this,FoodClassCenterCompareActivity.class);
-        startActivity(intent);
-        //使用EventBus进行传值
-        SearchDetailsEventBus searchDetailsEventBus=new SearchDetailsEventBus();
-        eventBus.post(searchDetailsEventBus);
-        finish();
 
+        Intent lastIntent = getIntent();
+        int type = lastIntent.getIntExtra("type", 0);
+
+        String datas = lastIntent.getStringExtra("details");
+        Log.e(TAG, "onItemClick: " + datas);
+        if (type==1) {
+            Intent intent1 = new Intent(this, FoodClassCenterCompareActivity.class);
+            Log.e(TAG, "onItemClick: " + data);
+            startActivity(intent1);
+            finish();
+        } else if(type==0){
+            Intent intent2 = new Intent(this, GrideviewItemDetails.class);
+            Log.e(TAG, "onItemClick: " + datas);
+            startActivity(intent2);
+            finish();
+        }
 
 
     }
-
-//    class ArrayReceive extends BroadcastReceiver{
-//
-//        @Override
-//        public void onReceive(Context context, Intent intent) {
-//
-//
-//            pager++;
-//            String urlscorell ="http://food.boohee.com/fb/v1/search?page=2&order_asc=desc&q="+utfStr+
-//                    " &token=QYCCzzZVYMpoxvYoz8ig&user_key=c538dd6d-c12f-4742-ac0c-7c71ea74aa5e "+
-//                    " &app_version=2.6&app_device=Android&os_version=6.0.1&phone_model=MI+NOTE+LTE&channel=xiaomi";
-//
-//            NetTool.getInstance().startRequest(urlscorell, SearchDetailsBean.class, new CallBack<SearchDetailsBean>() {
-//                @Override
-//                public void onSuccess(SearchDetailsBean respomse) {
-//                    searchDetailsAdapter.setItemsBeen(respomse.getItems());
-//                }
-//
-//                @Override
-//                public void onError(Throwable throwable) {
-//
-//                }
-//            });
-//
-//        }
-//    }
 }

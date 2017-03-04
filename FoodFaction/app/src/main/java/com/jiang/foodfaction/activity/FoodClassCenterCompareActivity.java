@@ -18,6 +18,9 @@ import org.greenrobot.eventbus.ThreadMode;
 public class FoodClassCenterCompareActivity extends BaseActivity implements View.OnClickListener {
     private ImageView imageView, leftImageView, rightImageView;
     private TextView textView, leftText, rightText;
+    private String TYPECOMPARE="compare";
+
+
 
     @Override
     public int bindLayout() {
@@ -60,15 +63,23 @@ public class FoodClassCenterCompareActivity extends BaseActivity implements View
             case R.id.include_image:
                 finish();
                 break;
-            //点击时跳转到搜索页面
+            //点击时跳转到搜索页面,传一个type判断之后跳转到那个界面
             case R.id.foodclass_center_left_image:
-                Intent intent = new Intent(this, FoodClassAboveDetailsActivity.class);
-                startActivity(intent);
+                Intent intentleft = new Intent(this, FoodClassAboveDetailsActivity.class);
+                Intent lastIntent1 = getIntent();
+                int type1 = lastIntent1.getIntExtra("type", 0);
+                intentleft.putExtra("type",type1);
+                startActivity(intentleft);
+                finish();
                 break;
             //点击调到搜索界面
             case R.id.foodclass_center_right_image:
-                Intent intentright = new Intent(this, FoodClassAboveDetailsActivity.class);
-                startActivity(intentright);
+                Intent intentright2 = new Intent(this, FoodClassAboveDetailsActivity.class);
+                Intent lastIntent = getIntent();
+                int type2 = lastIntent.getIntExtra("type", 0);
+                intentright2.putExtra("type",type2);
+                startActivity(intentright2);
+                finish();
                 break;
 
         }

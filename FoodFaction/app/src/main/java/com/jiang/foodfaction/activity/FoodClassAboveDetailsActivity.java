@@ -41,6 +41,7 @@ public class FoodClassAboveDetailsActivity extends BaseActivity implements OnCli
 
     private String url = "http://food.boohee.com/fb/v1/keywords?token=pxN9j6S1za8PGQzefHxh&user_key=e88bf69a-92d5-4dd4-89af-69aef89dc639&" +
             "app_version=2.6&app_device=Android&os_version=6.0.1&phone_model=MI+NOTE+LTE&channel=xiaomi";
+    private String TYPEDETAILS = "details";
 
 
     @Override
@@ -109,10 +110,15 @@ public class FoodClassAboveDetailsActivity extends BaseActivity implements OnCli
 
     @Override
     public void onItemClick(int position) {
+        Intent lastIntent =getIntent();
+        //type默认为0
+        int type =lastIntent.getIntExtra("type", 0);
+
         Intent intent = new Intent(this, SearchDetailsActivity.class);
-        Log.e(TAG, "onItemClick: "+data.getKeywords().get(position) );
         intent.putExtra("name", data.getKeywords().get(position));
+        intent.putExtra("type",type);
         startActivity(intent);
+        finish();
 
     }
 }
