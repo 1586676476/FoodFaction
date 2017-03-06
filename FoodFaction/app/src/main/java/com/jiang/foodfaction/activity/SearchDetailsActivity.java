@@ -10,6 +10,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.TextView;
 
 import com.jiang.foodfaction.R;
 import com.jiang.foodfaction.adapter.SearchDetailsAdapter;
@@ -23,6 +24,7 @@ import org.greenrobot.eventbus.EventBus;
 
 import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -37,12 +39,16 @@ public class SearchDetailsActivity extends BaseActivity implements View.OnClickL
     private EditText editText;
     private ImageView imageView, back;
 
-    private String TYPECOMPARE="compare";
-    private String TYPEDETAILS="details";
+    private TextView compare, cirlce;
+
+    private String TYPECOMPARE = "compare";
+    private String TYPEDETAILS = "details";
     private EventBus eventBus;
 
     private String url, kind;
     private String utfStr = "";
+
+    private ArrayReceiver arrayReceiver;
 
     @Override
     public int bindLayout() {
@@ -57,6 +63,10 @@ public class SearchDetailsActivity extends BaseActivity implements View.OnClickL
         back = (ImageView) findViewById(R.id.search_details_back);
         //初始化eventBus
         eventBus = EventBus.getDefault();
+        compare = bindView(R.id.grideview_details_recyclerView_compare);
+        cirlce = bindView(R.id.grideview_recycleView_image);
+
+        data = new ArrayList<>();
     }
 
     @Override
@@ -104,7 +114,12 @@ public class SearchDetailsActivity extends BaseActivity implements View.OnClickL
             }
         });
 
-        }
+        arrayReceiver = new ArrayReceiver();
+        IntentFilter intentFilter = new IntentFilter("COMPARE");
+        registerReceiver(arrayReceiver, intentFilter);
+        Log.e(TAG, "initData: " + intentFilter);
+
+    }
 
     @Override
     public void bindEvent() {
@@ -127,20 +142,26 @@ public class SearchDetailsActivity extends BaseActivity implements View.OnClickL
         Intent lastIntent = getIntent();
         int type = lastIntent.getIntExtra("type", 0);
 
-        String datas = lastIntent.getStringExtra("details");
-        Log.e(TAG, "onItemClick: " + datas);
-        if (type==1) {
+        if (type == 1) {
             Intent intent1 = new Intent(this, FoodClassCenterCompareActivity.class);
-            Log.e(TAG, "onItemClick: " + data);
+
             startActivity(intent1);
             finish();
-        } else if(type==0){
+        } else if (type == 0) {
             Intent intent2 = new Intent(this, GrideviewItemDetails.class);
-            Log.e(TAG, "onItemClick: " + datas);
             startActivity(intent2);
             finish();
         }
 
 
+    }
+
+    class ArrayReceiver extends BroadcastReceiver {
+
+        @Override
+        public void onReceive(Context context, Intent intent) {
+            compare.setVisibility(View.VISIBLE);
+            cirlce.setVisibility(View.GONE);
+        }
     }
 }

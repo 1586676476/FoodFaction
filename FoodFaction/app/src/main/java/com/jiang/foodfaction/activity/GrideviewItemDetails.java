@@ -13,17 +13,26 @@ import com.jiang.foodfaction.R;
 import com.jiang.foodfaction.bean.GrideViewDetailsBean;
 import com.jiang.foodfaction.bean.GrideViewItemDetailsBean;
 
+import com.jiang.foodfaction.bean.SearchDetailsBean;
+import com.jiang.foodfaction.greendao.Bean;
+import com.jiang.foodfaction.greendao.DbTool;
 import com.jiang.foodfaction.inter.CallBack;
 import com.jiang.foodfaction.packaging.NetTool;
+
+import java.util.ArrayList;
+import java.util.List;
 
 import de.hdodenhof.circleimageview.CircleImageView;
 
 public class GrideviewItemDetails extends BaseActivity {
 
     private GrideViewDetailsBean.FoodsBean data;
+    private SearchDetailsBean.ItemsBean list;
     private CircleImageView circleImageView;
     private TextView name, number, title;
     private String url;
+
+    private Bean bean;
 
     private ImageView imageView, back;
     private boolean isLiked;
@@ -44,7 +53,7 @@ public class GrideviewItemDetails extends BaseActivity {
         imageView = (ImageView) findViewById(R.id.grideview_item_details_linearLayout_image);
         back = (ImageView) findViewById(R.id.include_image);
 
-      }
+    }
 
     @Override
     public void initData() {
@@ -74,6 +83,7 @@ public class GrideviewItemDetails extends BaseActivity {
             public void onClick(View v) {
                 if (isLiked) {
                     imageView.setImageResource(R.mipmap.news_keep_default);
+                    DbTool.getInStance().insert(bean);
                     isLiked = false;
                 } else {
                     imageView.setImageResource(R.mipmap.news_keep_heighlight);
@@ -81,6 +91,28 @@ public class GrideviewItemDetails extends BaseActivity {
                 }
             }
         });
+
+//        Intent intent1=getIntent();
+//        String letter=intent1.getStringExtra("letter");
+//        String url1="http://food.boohee.com/fb/v1/foods/" + letter + "/mode_show?token=&user_key=&app_version=2.6" +
+//                               "&app_device=Android&os_version=6.0.1&phone_model=MI+NOTE+LTE&channel=xiaomi";
+//
+//        NetTool.getInstance().startRequest(url1, SearchDetailsBean.ItemsBean.class, new CallBack<SearchDetailsBean.ItemsBean>() {
+//            @Override
+//            public void onSuccess(SearchDetailsBean.ItemsBean respomse) {
+//                list=respomse;
+//                name.setText(respomse.getName());
+//                number.setText(respomse.getCalory());
+//                title.setText(respomse.getName());
+//                Glide.with(GrideviewItemDetails.this).load(data.getThumb_image_url()).into(circleImageView);
+//            }
+//
+//            @Override
+//            public void onError(Throwable throwable) {
+//
+//            }
+//        });
+
 
         back.setOnClickListener(new View.OnClickListener() {
             @Override

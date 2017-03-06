@@ -47,8 +47,8 @@ public class FoodClassCenterCompareActivity extends BaseActivity implements View
         rightImageView.setOnClickListener(this);
         imageView.setOnClickListener(this);
         //让文字显示
-        leftText.setVisibility(View.VISIBLE);
-        rightText.setVisibility(View.VISIBLE);
+//        leftText.setVisibility(View.VISIBLE);
+//        rightText.setVisibility(View.VISIBLE);
     }
 
     @Override
@@ -71,6 +71,7 @@ public class FoodClassCenterCompareActivity extends BaseActivity implements View
                 intentleft.putExtra("type",type1);
                 startActivity(intentleft);
                 finish();
+                sendBroadcast(new Intent("COMPARE"));
                 break;
             //点击调到搜索界面
             case R.id.foodclass_center_right_image:
@@ -80,6 +81,7 @@ public class FoodClassCenterCompareActivity extends BaseActivity implements View
                 intentright2.putExtra("type",type2);
                 startActivity(intentright2);
                 finish();
+                sendBroadcast(new Intent("COMPARE"));
                 break;
 
         }

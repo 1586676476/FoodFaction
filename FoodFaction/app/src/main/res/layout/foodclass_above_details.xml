@@ -36,11 +36,17 @@
             android:src="@mipmap/search" />
     </LinearLayout>
 
+    <ListView
+        android:id="@+id/foodclass_above_details_listview"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/foodclass_above_details_linearLayout"/>
+
     <TextView
         android:id="@+id/foodclass_above_details_text"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@id/foodclass_above_details_linearLayout"
+        android:layout_below="@id/foodclass_above_details_listview"
         android:layout_margin="10dp"
         android:text="大家都在搜" />
 

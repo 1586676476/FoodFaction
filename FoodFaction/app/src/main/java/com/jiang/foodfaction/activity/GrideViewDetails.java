@@ -269,7 +269,7 @@ public class GrideViewDetails extends BaseActivity implements OnClickListener {
                 "&sub_value=" + Id + "&order_by=1&page="
                 + pager + "&order_asc=0&token=&user_key=&app_version=2.6&app_device=Android&os_version=5.1" +
                 "&phone_model=M578CA&channel=meizu";
-        Log.e(TAG, "onItemClick: " + urlTwo);
+//        Log.e(TAG, "onItemClick: " + urlTwo);
         NetTool.getInstance().startRequest(urlTwo, GrideViewDetailsBean.class, new CallBack<GrideViewDetailsBean>() {
             @Override
             public void onSuccess(GrideViewDetailsBean respomse) {

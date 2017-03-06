@@ -10,10 +10,14 @@ import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.ListView;
 
 import com.jiang.foodfaction.R;
 import com.jiang.foodfaction.adapter.FoodClassAboveAdapter;
+import com.jiang.foodfaction.adapter.FoodClassAboveListViewAdapter;
 import com.jiang.foodfaction.bean.FoodClassAboveBean;
+import com.jiang.foodfaction.greendao.Bean;
+import com.jiang.foodfaction.greendao.DbTool;
 import com.jiang.foodfaction.inter.CallBack;
 import com.jiang.foodfaction.inter.OnClickListener;
 import com.jiang.foodfaction.packaging.NetTool;
@@ -34,6 +38,10 @@ public class FoodClassAboveDetailsActivity extends BaseActivity implements OnCli
     private FoodClassAboveBean data;
     private RecyclerView recyclerView;
     private FoodClassAboveAdapter foodClassAboveAdapter;
+
+    private FoodClassAboveListViewAdapter foodClassAboveListViewAdapter;
+    private ListView listView;
+    private Bean bean;
 
     private EditText editText;
 
@@ -56,6 +64,9 @@ public class FoodClassAboveDetailsActivity extends BaseActivity implements OnCli
         editText = (EditText) findViewById(R.id.foodclass_above_details_editText);
 
         search = (ImageView) findViewById(R.id.foodclass_above_details_search);
+
+        listView = bindView(R.id.foodclass_above_details_listview);
+
 
         imageView.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -110,13 +121,16 @@ public class FoodClassAboveDetailsActivity extends BaseActivity implements OnCli
 
     @Override
     public void onItemClick(int position) {
-        Intent lastIntent =getIntent();
+
+
+        Intent lastIntent = getIntent();
         //type默认为0
-        int type =lastIntent.getIntExtra("type", 0);
+        int type = lastIntent.getIntExtra("type", 0);
 
         Intent intent = new Intent(this, SearchDetailsActivity.class);
+
         intent.putExtra("name", data.getKeywords().get(position));
-        intent.putExtra("type",type);
+        intent.putExtra("type", type);
         startActivity(intent);
         finish();
 

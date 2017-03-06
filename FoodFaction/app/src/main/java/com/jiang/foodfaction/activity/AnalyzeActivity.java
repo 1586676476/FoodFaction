@@ -12,8 +12,6 @@ import com.jiang.foodfaction.R;
 public class AnalyzeActivity extends BaseActivity {
     private ImageView imageView;
 
-    private SharedPreferences sharedPreferences;
-
     @Override
     public int bindLayout() {
         return R.layout.foodclass_center_analyze;
