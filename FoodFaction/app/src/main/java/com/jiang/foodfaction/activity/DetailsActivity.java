@@ -88,13 +88,13 @@ public class DetailsActivity extends BaseActivity {
                     collect.setImageResource(R.mipmap.keepdefault);
                     isCollect = false;
                     DbTool.getInStance().deleteBean(bean);
-                    Log.e(TAG, "onClick: ");
+                   // Log.e(TAG, "onClick: ");
                 } else {
                     //点击图片变颜色,并且添加到数据库中
                     collect.setImageResource(R.mipmap.news_keep_heighlight);
                     isCollect = true;
                     DbTool.getInStance().insert(bean);
-                    Log.e(TAG, "onClick: " + bean);
+                    //Log.e(TAG, "onClick: " + bean);
 
                 }
             }
